@@ -139,7 +139,7 @@ function getVal() {
     
     if(result == true){
         typedWords = document.getElementById("myInput").value;
-        if(i < 59){
+        if(i < 60){
             if(typedWords == shownWords[i] + ' '){
                 correctCount += 1;
                 
@@ -149,7 +149,7 @@ function getVal() {
                 
             }
         }
-        else if(i == 59){
+        else if(i == 60){
             console.log(correctCount + " correct")
             console.log(incorrectCount + " incorrect")
         }
@@ -157,13 +157,13 @@ function getVal() {
         document.getElementById("myInput").value=''
         i += 1;
 
-        if (starting > 0 && correctCount+incorrectCount <= 59){
+        if (starting > 0 && correctCount+incorrectCount <= 60){
             time = (Date.now() - starting) / 1000 ;
             console.log((Date.now() - starting) / 1000)
             
         }
 
-        if(correctCount+incorrectCount == 59) {
+        if(correctCount+incorrectCount == 60) {
             document.getElementById('score-screen').style.display = 'inline';
             document.getElementById('wpm').textContent = (correctCount*(60/time)).toFixed(2) + " WPM" + "     " + (correctCount+incorrectCount) + '/' + correctCount;
             document.getElementById('myInput').disabled = true;
