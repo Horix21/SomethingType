@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monkeytype but worse</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <section id="timer" class="timer-text">0</section>
+    <section class="test-box">
+        <div class="test-box-text" >
+            <span class ="current-word" id="word"></span>
+        </div>
+    </section>
+    <form>
+        <input autocomplete="off" type="text" class="write-box" onkeypress="getVal()" id="myInput">
+    </form>
+
+    <section class="score" id="score-screen">
+        <p>You Scored:</p>
+        <p class="score-wpm">60WMP</p>
+        <p class="score-accuracy">100% accuracy</p>
+    </section> 
+
+    <script src="js/main.js"></script>
+</body>
+</html>
