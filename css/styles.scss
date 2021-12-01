@@ -8,22 +8,23 @@
 body {
     background-color: #333436;
 
-    .timer-text {
+    /*.timer-text {
       margin: 20px 0;
       font-size: 4em;
       color: #d9b014;
       text-align: center;
-    }
+    }*/
     
 
     .test-box {
+        
         width: 90%;
         max-width: 1400px;
         height: 21vh;
         max-height: 400px;
         border-radius: 5px;
         background-color: #333436;
-        margin: 0 auto;
+        margin: 50px auto;
         overflow: hidden;
         font-size: 1.8em;
         padding: 15px;
@@ -63,7 +64,7 @@ body {
         background-color: #333436;
         text-decoration: none;
         outline: none;
-        color: #606366;
+        color: #d9b014;
     }
 
     

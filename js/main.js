@@ -114,6 +114,7 @@ var timeInMs=1000;
 var j = 0;
 var k = 0;
 var starting = 0;
+var time = 0;
 
 var shownWords=[];
 
@@ -157,14 +158,16 @@ function getVal() {
         i += 1;
 
         if (starting > 0 && correctCount+incorrectCount <= 59){
-            document.getElementById('timer').textContent = (Date.now() - starting) / 1000;
-            console.log(Date.now())
+            time = (Date.now() - starting) / 1000 ;
+            console.log((Date.now() - starting) / 1000)
+            
         }
 
         if(correctCount+incorrectCount == 59) {
             document.getElementById('score-screen').style.display = 'inline';
-            document.getElementById('wpm').textContent = (correctCount*(60/document.getElementById('timer').textContent)).toFixed(2) + "WPM";
+            document.getElementById('wpm').textContent = (correctCount*(60/time)).toFixed(2) + " WPM" + "     " + (correctCount+incorrectCount) + '/' + correctCount;
             document.getElementById('myInput').disabled = true;
+            document.getElementById('acc').textContent = time.toFixed(2) + " seconds";
         }
         
     }
