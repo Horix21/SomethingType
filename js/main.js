@@ -167,7 +167,8 @@ function getVal() {
             document.getElementById('score-screen').style.display = 'inline';
             document.getElementById('wpm').textContent = (correctCount*(60/time)).toFixed(2) + " WPM" + "     " + (correctCount+incorrectCount) + '/' + correctCount;
             document.getElementById('myInput').disabled = true;
-            document.getElementById('acc').textContent = time.toFixed(2) + " seconds";
+            document.getElementById('timer').textContent = time.toFixed(2) + " seconds";
+            document.getElementById('accuracy').textContent = Math.round((correctCount / (correctCount + incorrectCount) ) * 100) + '% accuracy'
         }
         
     }

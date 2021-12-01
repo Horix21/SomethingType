@@ -15,13 +15,14 @@
         </div>
     </section>
     <form>
-        <input autocomplete="off" type="text" class="write-box" onkeypress="getVal()" id="myInput">
-    </form>
+        <input autofocus autocomplete="off" type="text" class="write-box" onkeypress="getVal()" id="myInput">
+        <input type="button" class="refresh-button" onclick="window.location.reload()" value="Refresh"/>
 
     <section class="score" id="score-screen">
         <p>You Scored:</p>
         <p class="score-wpm" id="wpm"></p>
-        <p class="score-accuracy" id="acc">100% accuracy</p>
+        <p class="time" id="timer"></p>
+        <p class="score-acc" id="accuracy"></p>
     </section> 
 
     <script src="js/main.js"></script>
