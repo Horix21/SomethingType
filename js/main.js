@@ -164,7 +164,7 @@ function getVal() {
         }
 
         if(correctCount+incorrectCount == 60) {
-            document.getElementById('score-screen').style.display = 'inline';
+            document.getElementById('score-screen').style.display = "block";
             document.getElementById('wpm').textContent = (correctCount*(60/time)).toFixed(2) + " WPM" + "     " + (correctCount+incorrectCount) + '/' + correctCount;
             document.getElementById('myInput').disabled = true;
             document.getElementById('timer').textContent = time.toFixed(2) + " seconds";

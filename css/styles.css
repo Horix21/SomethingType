@@ -69,8 +69,8 @@ body .refresh-button {
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
-  position: relative;
-  top: 7.5em;
+  position: fixed;
+  top: 27em;
 }
 body .score {
   color: #d9b014;
@@ -78,4 +78,6 @@ body .score {
   margin: 60px auto;
   text-align: center;
   font-size: 4em;
+  top: 7em;
+  position: fixed;
 }/*# sourceMappingURL=styles.css.map */
