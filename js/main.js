@@ -126,6 +126,7 @@ let show = shownWords.join(' ');
 document.getElementById('word').textContent = shownWords.join(' ');
 
 
+
 i = 0;
 function getVal() {
     if (correctCount + incorrectCount > 0 && k < 1) {
@@ -162,11 +163,13 @@ function getVal() {
 
         if(correctCount+incorrectCount == 59) {
             document.getElementById('score-screen').style.display = 'inline';
+            document.getElementById('wpm').textContent = (correctCount*(60/document.getElementById('timer').textContent)).toFixed(2) + "WPM";
+            document.getElementById('myInput').disabled = true;
         }
         
     }
 
-    //let's see if this works
+    
 }
 
 
