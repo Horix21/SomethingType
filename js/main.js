@@ -124,7 +124,7 @@ for(i = 0; i <= 60; i=i+1)
     }
 
 let show = shownWords.join(' ');
-document.getElementById('word').textContent = shownWords.join(' ');
+document.getElementById('greenText').textContent = shownWords.join(' ');
 
 
 
@@ -136,6 +136,11 @@ function getVal() {
     let hi = document.querySelector('input').value;
     let result = hi.includes(' ');
     
+    if (starting > 0 && correctCount+incorrectCount <= 60){
+        time = (Date.now() - starting) / 1000 ;
+        console.log((Date.now() - starting) / 1000)
+        document.getElementById('timer').textContent = time.toFixed(0);
+    }
     
     if(result == true){
         typedWords = document.getElementById("myInput").value;
@@ -157,17 +162,16 @@ function getVal() {
         document.getElementById("myInput").value=''
         i += 1;
 
-        if (starting > 0 && correctCount+incorrectCount <= 60){
-            time = (Date.now() - starting) / 1000 ;
-            console.log((Date.now() - starting) / 1000)
-            
-        }
-
         if(correctCount+incorrectCount == 60) {
+            document.getElementById("test").style.display = "none";
+            document.getElementById("timer").style.display = "none";
+            document.getElementById("refresh").style.display = "none";
+            document.getElementById("myInput").style.display = "none";
+
             document.getElementById('score-screen').style.display = "block";
-            document.getElementById('wpm').textContent = (correctCount*(60/time)).toFixed(2) + " WPM" + "     " + (correctCount+incorrectCount) + '/' + correctCount;
+            document.getElementById('wpm').textContent = (correctCount*(60/time)).toFixed(2) + " WPM" + "     " + correctCount + '/' + (correctCount+incorrectCount);
             document.getElementById('myInput').disabled = true;
-            document.getElementById('timer').textContent = time.toFixed(2) + " seconds";
+            document.getElementById('time').textContent = time.toFixed(2) + " seconds";
             document.getElementById('accuracy').textContent = Math.round((correctCount / (correctCount + incorrectCount) ) * 100) + '% accuracy'
         }
         
@@ -177,3 +181,4 @@ function getVal() {
 }
 
 
+//#d1d1c4

@@ -1,25 +1,25 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Open Sans", serif;
 }
 
 body {
   background-color: #333436;
-  /*.timer-text {
-    margin: 20px 0;
-    font-size: 4em;
-    color: #d9b014;
-    text-align: center;
-  }*/
+}
+body .timer {
+  margin: 20px 0;
+  font-size: 4em;
+  color: #d9b014;
+  text-align: center;
 }
 body .test-box {
   width: 90%;
   max-width: 1400px;
   height: 21vh;
   max-height: 400px;
-  border-radius: 5px;
   background-color: #333436;
   margin: 50px auto;
   overflow: hidden;
@@ -35,7 +35,7 @@ body span {
   border-radius: 5px;
   padding: 5px;
 }
-body .current-word {
+body .green {
   color: #606366;
 }
 body form {
@@ -49,14 +49,14 @@ body .write-box {
   padding: 20px;
   width: 80%;
   max-width: 1000px;
-  margin: 5vh auto 0 auto;
+  margin-top: -8vh;
   min-height: 75px;
   max-height: 15vh;
   background-color: #333436;
   text-decoration: none;
   outline: none;
   color: #d9b014;
-  position: fixed;
+  position: absolute;
 }
 body .refresh-button {
   display: block;
@@ -69,15 +69,16 @@ body .refresh-button {
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
-  position: fixed;
-  top: 27em;
+  position: absolute;
+  top: 43vh;
 }
 body .score {
   color: #d9b014;
   display: none;
-  margin: 60px auto;
-  text-align: center;
-  font-size: 4em;
-  top: 7em;
-  position: fixed;
+  position: absolute;
+  justify-content: center;
+  margin: 0;
+  top: 35%;
+  font-size: 5em;
+  transform: translateY(-50%);
 }/*# sourceMappingURL=styles.css.map */

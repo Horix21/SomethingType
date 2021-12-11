@@ -8,21 +8,21 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    
-    <section class="test-box">
+    <div id='timer' class="timer">0</div>
+    <section class="test-box" id="test">
         <div class="test-box-text" >
-            <span class ="current-word" id="word"></span>
+            <span id="greenText" class="green"></span>
         </div>
     </section>
     <form>
         <input autofocus autocomplete="off" type="text" class="write-box" onkeypress="getVal()" id="myInput">
-        <input type="button" class="refresh-button" onclick="window.location.reload()" value="Refresh"/>
+        <input type="button" id="refresh" class="refresh-button" onclick="window.location.reload()" value="Refresh"/>
 
     <section class="score" id="score-screen">
         <p>You Scored:</p>
         <p class="score-wpm" id="wpm"></p>
-        <p class="time" id="timer"></p>
         <p class="score-acc" id="accuracy"></p>
+        <p class="times" id="time"></p>
     </section> 
 
     <script src="js/main.js"></script>
