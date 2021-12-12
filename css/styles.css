@@ -15,6 +15,11 @@ body .timer {
   color: #d9b014;
   text-align: center;
 }
+body .right-wrong {
+  font-size: 2em;
+  color: #d9b014;
+  text-align: center;
+}
 body .test-box {
   width: 90%;
   max-width: 1400px;
@@ -59,7 +64,6 @@ body .write-box {
   position: absolute;
 }
 body .refresh-button {
-  display: block;
   font-family: inherit;
   font-size: inherit;
   width: 10%;
@@ -69,8 +73,8 @@ body .refresh-button {
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
-  position: absolute;
-  top: 43vh;
+  position: -webkit-sticky;
+  position: sticky;
 }
 body .score {
   color: #d9b014;

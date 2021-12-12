@@ -147,11 +147,14 @@ function getVal() {
         if(i < 60){
             if(typedWords == shownWords[i] + ' '){
                 correctCount += 1;
-                
+                document.getElementById('word').textContent = shownWords[i];
+                document.getElementById('word').style.color="#006400";
             }
             else if (typedWords != shownWords[i] + ' ') {
                 incorrectCount += 1;
-                
+                document.getElementById('word').textContent = typedWords + '/ ' + shownWords[i];
+                document.getElementById('word').style.color="red";
+
             }
         }
         else if(i == 60){
@@ -165,8 +168,10 @@ function getVal() {
         if(correctCount+incorrectCount == 60) {
             document.getElementById("test").style.display = "none";
             document.getElementById("timer").style.display = "none";
-            document.getElementById("refresh").style.display = "none";
             document.getElementById("myInput").style.display = "none";
+            document.getElementById("word").style.display = "none";
+
+            document.getElementById("refresh").style.top = '58vh';
 
             document.getElementById('score-screen').style.display = "block";
             document.getElementById('wpm').textContent = (correctCount*(60/time)).toFixed(2) + " WPM" + "     " + correctCount + '/' + (correctCount+incorrectCount);
