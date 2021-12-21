@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,15 +9,18 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div id='timer' class="timer">0</div>
+
     <div class="right-wrong" id="word"></div>
-    <section class="test-box" id="test">
-        <div class="test-box-text" >
-            <span id="greenText" class="green"></span>
-        </div>
-    </section>
+    <div class="container">
+        <div id='timer' class="timer">0</div>
+        <section class="test-box" id="test">
+            <div class="test-box-text" >
+                <span id="greenText" class="green"></span>
+            </div>
+        </section>
+    </div>
     <form>
-        <input autofocus autocomplete="off" type="text" class="write-box" onkeypress="getVal()" id="myInput">
+        <input autofocus autocomplete="off" type="text" class="write-box" id="myInput">
         <input type="button" id="refresh" class="refresh-button" onclick="window.location.reload()" value="Refresh"/>
 
     <section class="score" id="score-screen">
@@ -26,6 +30,6 @@
         <p class="times" id="time"></p>
     </section> 
 
-    <script src="js/main.js"></script>
+    <script src="js/main.js" type="module" defer></script>
 </body>
 </html>

@@ -11,30 +11,34 @@
 body {
     background-color: #333436;
 
-    .timer {
-      margin: 20px 0;
-      font-size: 4em;
-      color: #d9b014;
-      text-align: center;
-    }
-
     .right-wrong {
         font-size: 2em;
-        color: #d9b014;
+        color: #e2b714;
+        position: absolute;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
         text-align: center;
+        top: 15em;
     }
     
 
-    .test-box {
-        
+    .container {
+        .test-box {
+            text-justify: inter-character;
+            font-size: 1.8em;
+        }
+        .timer {
+            margin-left: 1em;
+            margin-bottom: -10px;
+            font-size: 1.9em;
+        }
         width: 90%;
-        max-width: 1400px;
-        height: 21vh;
-        max-height: 400px;
         background-color: #333436;
         margin: 50px auto;
         overflow: hidden;
-        font-size: 1.8em;
+        
         padding: 15px;
         line-height: 50px;
         div {
@@ -67,7 +71,7 @@ body {
         padding: 20px;
         width: 80%;
         max-width: 1000px;
-        margin-top: -8vh;
+        margin-top: -2vh;
         min-height: 75px;
         max-height: 15vh;
         background-color: #333436;
@@ -75,8 +79,7 @@ body {
         outline: none;
         color: #d9b014;
         position: absolute;
-
-        
+        border-radius: .6em;
     }
 
     .refresh-button {
@@ -89,8 +92,9 @@ body {
         justify-content: center;
         margin-left: auto;
         margin-right: auto;
-        position: sticky;
-        //top: 43vh;
+        position: absolute;
+        border-radius: .6em;
+        top: 43vh;
     }
 
     .score {
