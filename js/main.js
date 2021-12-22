@@ -13,22 +13,45 @@ var typedWords = '';
 var timeInMs=1000;
 var j = 0;
 var k = 0;
+var m = 0;
 var starting = 0;
 var time = 0;
+var shownWords= [];
+var wordsCount = 0;
 
-var shownWords=[];
+setWords(60);
 
-for(i = 0; i <= 60; i=i+1)
-    {
-        shownWords[i] = words[Math.floor(Math.random() * words.length)];
-    }
+document.getElementById('60w').addEventListener('click', () => {
+    setWords(60);
+})
 
-let show = shownWords.join(' ');
-document.getElementById('greenText').textContent = shownWords.join(' ');
+document.getElementById('30w').addEventListener('click', () => {
+    setWords(30);
+})
+
+document.getElementById('10w').addEventListener('click', () => {
+    setWords(10);
+})
+
+function setWords(wordCount) {
+    
+
+    wordsCount = wordCount;
+    document.getElementById('greenText').textContent = '';
+    shownWords = [];
+    for(m = 0; m <= wordCount; m++)
+        {
+            shownWords[m] = words[Math.floor(Math.random() * words.length)];
+        }
+
+    let show = shownWords.join('');
+    document.getElementById('greenText').textContent = shownWords.join(' ');
+}
 
 
-const myInput = document.getElementById('myInput');
-myInput.onkeypress = getVal;
+document.getElementById('myInput').addEventListener('keypress', () => {
+    getVal();
+})
 
 i = 0;
 function getVal() {
@@ -38,28 +61,29 @@ function getVal() {
     let hi = document.querySelector('input').value;
     let result = hi.includes(' ');
     
-    if (starting > 0 && correctCount+incorrectCount <= 60){
+    if (starting > 0 && correctCount+incorrectCount <= wordsCount){
         time = (Date.now() - starting) / 1000 ;
-        console.log((Date.now() - starting) / 1000)
+        //console.log((Date.now() - starting) / 1000)
         document.getElementById('timer').textContent = time.toFixed(0);
     }
     
     if(result == true){
         typedWords = document.getElementById("myInput").value;
-        if(i < 60){
+        if(i < wordsCount){
             if(typedWords == shownWords[i] + ' '){
                 correctCount += 1;
                 document.getElementById('word').textContent = shownWords[i];
                 document.getElementById('word').style.color="#006400";
             }
             else if (typedWords != shownWords[i] + ' ') {
+                console.log(typedWords)
                 incorrectCount += 1;
                 document.getElementById('word').textContent = typedWords + '/ ' + shownWords[i];
                 document.getElementById('word').style.color="red";
 
             }
         }
-        else if(i == 60){
+        else if(i == wordsCount){
             console.log(correctCount + " correct")
             console.log(incorrectCount + " incorrect")
         }
@@ -67,13 +91,12 @@ function getVal() {
         document.getElementById("myInput").value=''
         i += 1;
 
-        if(correctCount+incorrectCount == 60) {
+        if(correctCount+incorrectCount == wordsCount) {
             document.getElementById("test").style.display = "none";
             document.getElementById("timer").style.display = "none";
             document.getElementById("myInput").style.display = "none";
             document.getElementById("word").style.display = "none";
-
-            document.getElementById("refresh").style.top = '58vh';
+            document.getElementById("refresh").style.display = "none";
 
             document.getElementById('score-screen').style.display = "block";
             document.getElementById('wpm').textContent = (correctCount*(60/time)).toFixed(2) + " WPM" + "     " + correctCount + '/' + (correctCount+incorrectCount);

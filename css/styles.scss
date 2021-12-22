@@ -10,6 +10,39 @@
 
 body {
     background-color: #333436;
+    
+
+
+    .buttonss {
+        font-size: 1.4em;
+        margin-left: 10px;
+
+        .s60 {
+            margin-right: 2px;
+            border: none;
+            background: transparent;
+            &:hover {
+                color: #e2b714;
+            }
+        }
+        .s30 {
+            margin-right: 2px;
+            border: none;
+            background: transparent;
+            &:hover {
+                color: #e2b714;
+            }
+        }
+        .s10 {
+            margin-right: 2px;
+            border: none;
+            background: #333436;
+            &:hover {
+                color: #e2b714;
+            }
+        }
+        
+    }
 
     .right-wrong {
         font-size: 2em;
@@ -26,7 +59,7 @@ body {
     // how are you
     .container {
         .test-box {
-            text-justify: inter-character;
+            text-align:left;
             font-size: 1.8em;
         }
         .timer {
@@ -66,6 +99,7 @@ body {
     }
 
     .write-box {
+        outline: none;
         font-family: inherit;
         font-size: 1.5em;
         padding: 20px;
@@ -83,6 +117,7 @@ body {
     }
 
     .refresh-button {
+        border-color: #333436;
         font-family: inherit;
         font-size: inherit;
         width: 10%;
@@ -92,9 +127,10 @@ body {
         justify-content: center;
         margin-left: auto;
         margin-right: auto;
-        position: absolute;
+        position: sticky;
+        margin-top: 5em;
         border-radius: .6em;
-        top: 43vh;
+        
     }
 
     .score {

@@ -9,7 +9,11 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-
+    <div class="buttonss">
+        <button class="s60" id="60w">60</button>
+        <button class="s30" id="30w">30</button>
+        <button class="s10" id="10w">10</button>
+    </div>
     <div class="right-wrong" id="word"></div>
     <div class="container">
         <div id='timer' class="timer">0</div>
@@ -20,10 +24,10 @@
         </section>
     </div>
     <form>
-        <input autofocus autocomplete="off" type="text" class="write-box" id="myInput">
+        <input contentEditable="true" autofocus autocomplete="off" type="text" class="write-box" id="myInput">
         <input type="button" id="refresh" class="refresh-button" onclick="window.location.reload()" value="Refresh"/>
 
-    <section class="score" id="score-screen">
+    <section class="score" id="score-screen" onclick="window.location.reload()">
         <p>You Scored:</p>
         <p class="score-wpm" id="wpm"></p>
         <p class="score-acc" id="accuracy"></p>
