@@ -73,14 +73,13 @@ function getVal() {
             if(typedWords == shownWords[i] + ' '){
                 correctCount += 1;
                 document.getElementById('word').textContent = shownWords[i];
-                document.getElementById('word').style.color="#006400";
+                document.getElementById('word').style.color = "green";
             }
             else if (typedWords != shownWords[i] + ' ') {
                 console.log(typedWords)
                 incorrectCount += 1;
                 document.getElementById('word').textContent = typedWords + '/ ' + shownWords[i];
-                document.getElementById('word').style.color="red";
-
+                document.getElementById('word').style.color = "red";
             }
         }
         else if(i == wordsCount){

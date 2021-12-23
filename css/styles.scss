@@ -1,5 +1,14 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
+:root {
+    --primary-color: #333436;
+    --test-text-color: #606366;
+    --button-color: #e2b714;
+    --write-box-text-color: #e2b714;
+    --score-text-color: #e2b714;
+    --refresh-button-color: #606366;
+}
+
 
 * {
     margin: 0;
@@ -9,44 +18,45 @@
 }
 
 body {
-    background-color: #333436;
+    background-color: var(--primary-color);
     
 
 
     .buttonss {
         font-size: 1.4em;
-        margin-left: 10px;
-
+        margin-top: 10px;
+        margin-left: 95.5%;
+        background: var(--primary-color);
         .s60 {
-            margin-right: 2px;
+            margin-right: 5px;
             border: none;
             background: transparent;
             &:hover {
-                color: #e2b714;
+                color: var(--button-color);
             }
         }
         .s30 {
-            margin-right: 2px;
+            margin-right: 5px;
             border: none;
             background: transparent;
             &:hover {
-                color: #e2b714;
+                color: var(--button-color);
             }
         }
         .s10 {
-            margin-right: 2px;
+            margin-right: 5px;
             border: none;
-            background: #333436;
+            background: transparent;
             &:hover {
-                color: #e2b714;
+                color: var(--button-color);
             }
         }
+        
         
     }
 
     .right-wrong {
         font-size: 2em;
-        color: #e2b714;
         position: absolute;
         margin-left: auto;
         margin-right: auto;
@@ -68,7 +78,7 @@ body {
             font-size: 1.9em;
         }
         width: 90%;
-        background-color: #333436;
+        background-color: var(--primary-color);
         margin: 50px auto;
         overflow: hidden;
         
@@ -89,7 +99,7 @@ body {
 
 
     .green {
-        color:#606366;
+        color: var(--test-text-color);
     }
 
     form {
@@ -108,22 +118,22 @@ body {
         margin-top: -2vh;
         min-height: 75px;
         max-height: 15vh;
-        background-color: #333436;
+        background-color: var(--primary-color);
         text-decoration: none;
         outline: none;
-        color: #d9b014;
+        color: var(--write-box-text-color);
         position: absolute;
         border-radius: .6em;
     }
 
     .refresh-button {
-        border-color: #333436;
+        border-color: var(--refresh-button-color);
         font-family: inherit;
         font-size: inherit;
         width: 10%;
         height: 2.75em;
         text-align: center;
-        background-color: #606366;
+        background-color: var(--refresh-button-color);
         justify-content: center;
         margin-left: auto;
         margin-right: auto;
@@ -134,7 +144,7 @@ body {
     }
 
     .score {
-        color: #d9b014;
+        color: var(--score-text-color);
         display: none;
         position: absolute;
         justify-content: center;
