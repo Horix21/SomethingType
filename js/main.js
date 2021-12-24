@@ -20,6 +20,7 @@ var wordsCount = 0;
 var clickCount = 0;
 var sec = 0;
 var min = 0;
+var mil = 0;
 
 
 document.getElementById('myInput').addEventListener('keypress', () => {
@@ -42,13 +43,24 @@ function startTimer() {
   
 function timerCycle() {
     if (stoptime == false) {
-        time++;
-
+        if (k < 1) {
+            starting = Date.now();
+            k++;
+        }
+        
+        mil = parseInt(mil);
         sec = parseInt(sec);
         min = parseInt(min);
 
-        sec++;
+        mil = Date.now() - starting; 
+        time = Date.now() - starting;
+        console.log(mil + ' ' + sec);
 
+        if (mil > 1000) {
+            
+            sec++;
+            mil = 0;
+        }
         if (sec == 60) {
             min++;
             sec = 0;
@@ -164,9 +176,9 @@ function getVal() {
             
 
             document.getElementById('score-screen').style.display = "block";
-            document.getElementById('wpm').textContent = (correctCount*(60/time)).toFixed(2) + " WPM" + "     " + correctCount + '/' + (correctCount+incorrectCount);
+            document.getElementById('wpm').textContent = (correctCount*(60/(time/1000))).toFixed(2) + " WPM" + "     " + correctCount + '/' + (correctCount+incorrectCount);
             document.getElementById('myInput').disabled = true;
-            document.getElementById('time').textContent = time + " seconds";
+            document.getElementById('time').textContent = (time/1000).toFixed(2) + " seconds";
             document.getElementById('accuracy').textContent = Math.round((correctCount / (correctCount + incorrectCount) ) * 100) + '% accuracy'
         }
         
