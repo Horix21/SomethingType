@@ -18,20 +18,42 @@ var starting = 0;
 var time = 0;
 var shownWords= [];
 var wordsCount = 0;
+var clickCount = 0;
+
 
 setWords(60);
 
 document.getElementById('60w').addEventListener('click', () => {
     setWords(60);
+    clickCount = 0;
+    if (clickCount == 0) {
+        document.getElementById('60w').style.color = "#e2b714";
+        document.getElementById('30w').style.color = "#000000";
+        document.getElementById('10w').style.color = "#000000";
+    }
 })
 
 document.getElementById('30w').addEventListener('click', () => {
     setWords(30);
+    clickCount = 1;
+    if (clickCount == 1) {
+        document.getElementById('60w').style.color = "#000000";
+        document.getElementById('30w').style.color = "#e2b714";
+        document.getElementById('10w').style.color = "#000000";
+    }
 })
 
 document.getElementById('10w').addEventListener('click', () => {
     setWords(10);
+    clickCount = 2;
+    if (clickCount == 2) {
+        document.getElementById('60w').style.color = "#000000";
+        document.getElementById('30w').style.color = "#000000";
+        document.getElementById('10w').style.color = "#e2b714";
+    }
 })
+
+
 
 function setWords(wordCount) {
     
@@ -63,7 +85,7 @@ function getVal() {
     
     if (starting > 0 && correctCount+incorrectCount <= wordsCount){
         time = (Date.now() - starting) / 1000 ;
-        //console.log((Date.now() - starting) / 1000)
+        console.log((Date.now() - starting) / 1000)
         document.getElementById('timer').textContent = time.toFixed(0);
     }
     
@@ -96,6 +118,8 @@ function getVal() {
             document.getElementById("myInput").style.display = "none";
             document.getElementById("word").style.display = "none";
             document.getElementById("refresh").style.display = "none";
+            document.getElementById("buttons").style.display = "none";
+            
 
             document.getElementById('score-screen').style.display = "block";
             document.getElementById('wpm').textContent = (correctCount*(60/time)).toFixed(2) + " WPM" + "     " + correctCount + '/' + (correctCount+incorrectCount);

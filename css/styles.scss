@@ -26,30 +26,21 @@ body {
         font-size: 1.4em;
         margin-top: 10px;
         margin-left: 95.5%;
-        background: var(--primary-color);
+        color: #000000;
         .s60 {
             margin-right: 5px;
             border: none;
             background: transparent;
-            &:hover {
-                color: var(--button-color);
-            }
         }
         .s30 {
             margin-right: 5px;
             border: none;
-            background: transparent;
-            &:hover {
-                color: var(--button-color);
-            }
+            background: transparent;    
         }
         .s10 {
             margin-right: 5px;
             border: none;
             background: transparent;
-            &:hover {
-                color: var(--button-color);
-            }
         }
         
         

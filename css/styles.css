@@ -22,31 +22,22 @@ body .buttonss {
   font-size: 1.4em;
   margin-top: 10px;
   margin-left: 95.5%;
-  background: var(--primary-color);
+  color: #000000;
 }
 body .buttonss .s60 {
   margin-right: 5px;
   border: none;
   background: transparent;
 }
-body .buttonss .s60:hover {
-  color: var(--button-color);
-}
 body .buttonss .s30 {
   margin-right: 5px;
   border: none;
   background: transparent;
 }
-body .buttonss .s30:hover {
-  color: var(--button-color);
-}
 body .buttonss .s10 {
   margin-right: 5px;
   border: none;
   background: transparent;
-}
-body .buttonss .s10:hover {
-  color: var(--button-color);
 }
 body .right-wrong {
   font-size: 2em;
