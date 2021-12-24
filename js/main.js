@@ -4,8 +4,7 @@ const words = await res.json();
 var currentWords = 0;
 var currentInput = "";
 var timerconfig = 60;
-var timer;
-var timerRunning = false;
+var stoptime = true;
 var correctCount = 0;
 var incorrectCount = 0;
 var i = 0;
@@ -19,8 +18,57 @@ var time = 0;
 var shownWords= [];
 var wordsCount = 0;
 var clickCount = 0;
+var sec = 0;
+var min = 0;
 
 
+document.getElementById('myInput').addEventListener('keypress', () => {
+    
+    startTimer();
+
+})
+
+function startTimer() {
+    if (stoptime == true) {
+        stoptime = false;
+        timerCycle();
+    }
+}
+  function stopTimer() {
+    if (stoptime == false) {
+        stoptime = true;
+    }
+}
+  
+function timerCycle() {
+    if (stoptime == false) {
+        time++;
+
+        sec = parseInt(sec);
+        min = parseInt(min);
+
+        sec++;
+
+        if (sec == 60) {
+            min++;
+            sec = 0;
+        }
+        if ((sec < 10 || sec == 0) && min > 0) {
+            sec = '0' + sec;
+        }
+        if (min < 10 || min == 0) {
+            min = '0' + min;
+        }
+
+        if(min > 0){
+            document.getElementById('timer').textContent = min + ':' + sec;
+        }
+        else
+            document.getElementById('timer').textContent = sec;
+
+        setTimeout(timerCycle, 1000);
+    }
+}
 setWords(60);
 
 document.getElementById('60w').addEventListener('click', () => {
@@ -77,17 +125,11 @@ document.getElementById('myInput').addEventListener('keypress', () => {
 
 i = 0;
 function getVal() {
-    if (correctCount + incorrectCount > 0 && k < 1) {
-        starting = Date.now();
-        k++;}
+    
     let hi = document.querySelector('input').value;
     let result = hi.includes(' ');
     
-    if (starting > 0 && correctCount+incorrectCount <= wordsCount){
-        time = (Date.now() - starting) / 1000 ;
-        console.log((Date.now() - starting) / 1000)
-        document.getElementById('timer').textContent = time.toFixed(0);
-    }
+   
     
     if(result == true){
         typedWords = document.getElementById("myInput").value;
@@ -124,7 +166,7 @@ function getVal() {
             document.getElementById('score-screen').style.display = "block";
             document.getElementById('wpm').textContent = (correctCount*(60/time)).toFixed(2) + " WPM" + "     " + correctCount + '/' + (correctCount+incorrectCount);
             document.getElementById('myInput').disabled = true;
-            document.getElementById('time').textContent = time.toFixed(2) + " seconds";
+            document.getElementById('time').textContent = time + " seconds";
             document.getElementById('accuracy').textContent = Math.round((correctCount / (correctCount + incorrectCount) ) * 100) + '% accuracy'
         }
         
