@@ -1,4 +1,4 @@
-const res = await fetch('SomethingType/js/words.geojson');
+const res = await fetch('https://horix21.github.io/SomethingType/js/words.json');
 const words = await res.json();
 
 var currentWords = 0;
