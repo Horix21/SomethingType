@@ -1,4 +1,4 @@
-const res = await fetch('/js/words.geojson');
+const res = await fetch('SomethingType/js/words.geojson');
 const words = await res.json();
 
 var currentWords = 0;
