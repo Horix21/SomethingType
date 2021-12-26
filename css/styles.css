@@ -47,12 +47,12 @@ body .right-wrong {
   left: 0;
   right: 0;
   text-align: center;
-  top: 15em;
+  top: 17em;
 }
 body .container {
-  width: 90%;
+  width: 63%;
   background-color: var(--primary-color);
-  margin: 50px auto;
+  margin: 50px 20%;
   overflow: hidden;
   padding: 15px;
   line-height: 50px;
@@ -75,7 +75,9 @@ body span {
   padding: 5px;
 }
 body .green {
+  font-size: 0.9em;
   color: var(--test-text-color);
+  line-height: 10px;
 }
 body form {
   width: 100%;

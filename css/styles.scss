@@ -19,7 +19,7 @@
 
 body {
     background-color: var(--primary-color);
-    
+        
 
 
     .buttonss {
@@ -54,7 +54,7 @@ body {
         left: 0;
         right: 0;
         text-align: center;
-        top: 15em;
+        top: 17em;
     }
     
     // how are you
@@ -68,9 +68,9 @@ body {
             margin-bottom: -10px;
             font-size: 1.9em;
         }
-        width: 90%;
+        width: 63%;
         background-color: var(--primary-color);
-        margin: 50px auto;
+        margin: 50px 20%;
         overflow: hidden;
         
         padding: 15px;
@@ -90,7 +90,10 @@ body {
 
 
     .green {
+
+        font-size: .9em;
         color: var(--test-text-color);
+        line-height: 10px;
     }
 
     form {

@@ -33,15 +33,15 @@
     </div>
     <form>
         <input contentEditable="true" autofocus autocomplete="off" type="text" class="write-box" id="myInput">
-        <input type="button" id="refresh" class="refresh-button" onclick="window.location.reload()" value="Refresh"/>
+        <input type="button" id="refresh" class="refresh-button" value="Refresh"/>
 
-    <section class="score" id="score-screen" onclick="window.location.reload()">
-        <p>You Scored:</p>
-        <p class="score-wpm" id="wpm"></p>
-        <p class="score-acc" id="accuracy"></p>
-        <p class="times" id="time"></p>
-    </section> 
-
+        <section class="score" id="score-screen" onclick="window.location.reload()">
+            <p>You Scored:</p>
+            <p class="score-wpm" id="wpm"></p>
+            <p class="score-acc" id="accuracy"></p>
+            <p class="times" id="time"></p>
+        </section> 
+    </form>
     <script src="js/main.js" type="module" defer></script>
 </body>
 </html>

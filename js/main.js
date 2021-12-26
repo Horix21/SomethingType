@@ -21,12 +21,22 @@ var clickCount = 0;
 var sec = 0;
 var min = 0;
 var mil = 0;
+var x = 0;
+var charList = [];
+var showing = "";
 
+document.getElementById('refresh').addEventListener('click', () => {
+    setWords(wordsCount);
+    document.getElementById('myInput').value = '';
+    document.getElementById('myInput').focus();
+    i = 0;
+    resetTimer();
+    document.getElementById('word').textContent = '';
+})
 
-document.getElementById('myInput').addEventListener('keypress', () => {
-    
+document.getElementById('myInput').addEventListener('input', () => {
+    getVal();
     startTimer();
-
 })
 
 function startTimer() {
@@ -81,6 +91,13 @@ function timerCycle() {
         setTimeout(timerCycle, 1000);
     }
 }
+
+function resetTimer() {
+    document.getElementById('timer').textContent = 0;
+    stoptime = true;
+    sec = 0;
+    min = 0;
+}
 setWords(60);
 
 document.getElementById('60w').addEventListener('click', () => {
@@ -91,6 +108,7 @@ document.getElementById('60w').addEventListener('click', () => {
         document.getElementById('30w').style.color = "#000000";
         document.getElementById('10w').style.color = "#000000";
     }
+    document.getElementById('myInput').focus();
 })
 
 document.getElementById('30w').addEventListener('click', () => {
@@ -101,6 +119,7 @@ document.getElementById('30w').addEventListener('click', () => {
         document.getElementById('30w').style.color = "#e2b714";
         document.getElementById('10w').style.color = "#000000";
     }
+    document.getElementById('myInput').focus();
 })
 
 document.getElementById('10w').addEventListener('click', () => {
@@ -111,29 +130,32 @@ document.getElementById('10w').addEventListener('click', () => {
         document.getElementById('30w').style.color = "#000000";
         document.getElementById('10w').style.color = "#e2b714";
     }
+    document.getElementById('myInput').focus();
 })
 
 
 
 function setWords(wordCount) {
-    
-
     wordsCount = wordCount;
-    document.getElementById('greenText').textContent = '';
-    shownWords = [];
-    for(m = 0; m <= wordCount; m++)
-        {
-            shownWords[m] = words[Math.floor(Math.random() * words.length)];
-        }
 
-    let show = shownWords.join('');
-    document.getElementById('greenText').textContent = shownWords.join(' ');
+    document.getElementById('greenText').textContent = '';
+    showing = '';
+    shownWords = [];
+
+    for(m = 0; m <= wordCount - 1; m++)
+    {
+        shownWords[m] = words[Math.floor(Math.random() * words.length)];
+    }
+    for (m = 0; m < shownWords.length; m++) {
+        showing += ' ' + shownWords[m];
+
+        if ((m + 1) % 17 == 0) {
+            showing += '<br>';
+        }
+    }
+    document.getElementById('greenText').innerHTML = showing;
 }
 
-
-document.getElementById('myInput').addEventListener('keypress', () => {
-    getVal();
-})
 
 i = 0;
 function getVal() {
@@ -145,7 +167,7 @@ function getVal() {
     
     if(result == true){
         typedWords = document.getElementById("myInput").value;
-        if(i < wordsCount){
+        if(i < wordsCount ){
             if(typedWords == shownWords[i] + ' '){
                 correctCount += 1;
                 document.getElementById('word').textContent = shownWords[i];
@@ -158,7 +180,7 @@ function getVal() {
                 document.getElementById('word').style.color = "red";
             }
         }
-        else if(i == wordsCount){
+        else if(i == wordsCount - 1){
             console.log(correctCount + " correct")
             console.log(incorrectCount + " incorrect")
         }
@@ -166,7 +188,7 @@ function getVal() {
         document.getElementById("myInput").value=''
         i += 1;
 
-        if(correctCount+incorrectCount == wordsCount) {
+        if(correctCount+incorrectCount == wordsCount ) {
             document.getElementById("test").style.display = "none";
             document.getElementById("timer").style.display = "none";
             document.getElementById("myInput").style.display = "none";
@@ -181,8 +203,5 @@ function getVal() {
             document.getElementById('time').textContent = (time/1000).toFixed(2) + " seconds";
             document.getElementById('accuracy').textContent = Math.round((correctCount / (correctCount + incorrectCount) ) * 100) + '% accuracy'
         }
-        
     }
-
-    
 }
