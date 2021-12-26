@@ -1,4 +1,4 @@
-const res = await fetch('/js/words.json');
+const res = await fetch('/js/words.geojson');
 const words = await res.json();
 
 var currentWords = 0;
@@ -26,13 +26,16 @@ var charList = [];
 var showing = "";
 
 document.getElementById('refresh').addEventListener('click', () => {
-    setWords(wordsCount);
+    
     document.getElementById('myInput').value = '';
     document.getElementById('myInput').focus();
+    document.getElementById('word').textContent = '';
+    setWords(wordsCount);
     i = 0;
     resetTimer();
-    document.getElementById('word').textContent = '';
+    
 })
+
 
 document.getElementById('myInput').addEventListener('input', () => {
     getVal();
@@ -95,6 +98,7 @@ function timerCycle() {
 function resetTimer() {
     document.getElementById('timer').textContent = 0;
     stoptime = true;
+    mil = 0
     sec = 0;
     min = 0;
 }
@@ -185,7 +189,7 @@ function getVal() {
             console.log(incorrectCount + " incorrect")
         }
         
-        document.getElementById("myInput").value=''
+        document.getElementById("myInput").value='';
         i += 1;
 
         if(correctCount+incorrectCount == wordsCount ) {
