@@ -33,7 +33,8 @@ document.getElementById('refresh').addEventListener('click', () => {
     setWords(wordsCount);
     i = 0;
     resetTimer();
-    
+    correctCount = 0; incorrectCount = 0;
+
 })
 
 
@@ -65,14 +66,12 @@ function timerCycle() {
         sec = parseInt(sec);
         min = parseInt(min);
 
-        mil = Date.now() - starting; 
+        mil = Date.now() - starting - 1000 * sec; 
         time = Date.now() - starting;
-        console.log(mil + ' ' + sec);
 
-        if (mil > 1000) {
-            
-            sec++;
+        if (mil >= 1000) {
             mil = 0;
+            sec++;
         }
         if (sec == 60) {
             min++;
@@ -84,6 +83,8 @@ function timerCycle() {
         if (min < 10 || min == 0) {
             min = '0' + min;
         }
+
+        console.log(mil + ' ' + sec);
 
         if(min > 0){
             document.getElementById('timer').textContent = min + ':' + sec;
@@ -101,6 +102,8 @@ function resetTimer() {
     mil = 0
     sec = 0;
     min = 0;
+    k = 0;
+    starting = 0;
 }
 setWords(60);
 
@@ -153,7 +156,7 @@ function setWords(wordCount) {
     for (m = 0; m < shownWords.length; m++) {
         showing += ' ' + shownWords[m];
 
-        if ((m + 1) % 17 == 0) {
+        if ((m + 1) % 16 == 0) {
             showing += '<br>';
         }
     }
@@ -166,9 +169,7 @@ function getVal() {
     
     let hi = document.querySelector('input').value;
     let result = hi.includes(' ');
-    
-   
-    
+
     if(result == true){
         typedWords = document.getElementById("myInput").value;
         if(i < wordsCount ){
@@ -178,7 +179,6 @@ function getVal() {
                 document.getElementById('word').style.color = "green";
             }
             else if (typedWords != shownWords[i] + ' ') {
-                console.log(typedWords)
                 incorrectCount += 1;
                 document.getElementById('word').textContent = typedWords + '/ ' + shownWords[i];
                 document.getElementById('word').style.color = "red";
