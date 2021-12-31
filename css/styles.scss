@@ -19,7 +19,23 @@
 
 body {
     background-color: var(--primary-color);
-        
+    .logo {
+        margin-left: 47px;
+        text-decoration: none;
+        font-weight: bold;
+        color: black;
+        font-size: 1.6em;
+        position: absolute;
+
+        span {
+            color:#e2b714;
+        }
+    }
+    .icon {
+        position: absolute;
+        margin-top: 0px;
+        margin-left: 10px;
+    }
 
 
     .buttonss {

@@ -18,6 +18,22 @@
 body {
   background-color: var(--primary-color);
 }
+body .logo {
+  margin-left: 47px;
+  text-decoration: none;
+  font-weight: bold;
+  color: black;
+  font-size: 1.6em;
+  position: absolute;
+}
+body .logo span {
+  color: #e2b714;
+}
+body .icon {
+  position: absolute;
+  margin-top: 0px;
+  margin-left: 10px;
+}
 body .buttonss {
   font-size: 1.4em;
   margin-top: 10px;
