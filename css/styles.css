@@ -1,11 +1,11 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 :root {
   --primary-color: #333436;
-  --test-text-color: #606366;
+  --test-text-color: #616365;
   --button-color: #e2b714;
   --write-box-text-color: #e2b714;
   --score-text-color: #e2b714;
-  --refresh-button-color: #606366;
+  --refresh-button-color: #616365;
 }
 
 * {
@@ -19,20 +19,9 @@ body {
   background-color: var(--primary-color);
 }
 body .logo {
-  margin-left: 47px;
-  text-decoration: none;
-  font-weight: bold;
-  color: black;
-  font-size: 1.6em;
-  position: absolute;
-}
-body .logo span {
-  color: #e2b714;
-}
-body .icon {
-  position: absolute;
-  margin-top: 0px;
+  margin-top: 10px;
   margin-left: 10px;
+  position: absolute;
 }
 body .buttonss {
   font-size: 1.4em;
@@ -63,13 +52,14 @@ body .right-wrong {
   left: 0;
   right: 0;
   text-align: center;
-  top: 17em;
+  top: 19em;
 }
 body .container {
   width: 63%;
   background-color: var(--primary-color);
   margin: 50px 20%;
   overflow: hidden;
+  margin-top: 8em;
   padding: 15px;
   line-height: 50px;
 }
