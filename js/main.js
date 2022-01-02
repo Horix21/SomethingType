@@ -172,6 +172,9 @@ document.getElementById('10w').addEventListener('click', () => {
 
 
 function setWords(wordCount) {
+    i = 0;
+    correctCount = 0;
+    incorrectCount = 0;
     totalCharNumber = 0;
     document.getElementById('greenText').innerHTML = '';
     wordsCount = wordCount;
