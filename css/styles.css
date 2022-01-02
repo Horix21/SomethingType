@@ -18,6 +18,15 @@
 body {
   background-color: var(--primary-color);
 }
+body .focused-word {
+  text-decoration: underline;
+}
+body .right {
+  color: #d0d0d0;
+}
+body .wrong {
+  color: #ca4747;
+}
 body .logo {
   margin-top: 10px;
   margin-left: 10px;
@@ -132,4 +141,7 @@ body .score {
   top: 35%;
   font-size: 5em;
   transform: translateY(-50%);
+}
+body .word_active {
+  display: none;
 }/*# sourceMappingURL=styles.css.map */

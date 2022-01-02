@@ -20,6 +20,17 @@
 body {
     background-color: var(--primary-color);
     
+    .focused-word {
+        text-decoration: underline;
+    }
+
+    .right {
+        color: #d0d0d0;
+    }
+    .wrong {
+        color: #ca4747;
+    }
+
     .logo {
         margin-top: 10px;
         margin-left: 10px;
@@ -94,7 +105,7 @@ body {
 
 
     .green {
-
+       
         font-size: .9em;
         color: var(--test-text-color);
         line-height: 10px;
@@ -151,6 +162,9 @@ body {
         font-size: 5em;
         -ms-transform: translateY(-50%);
         transform: translateY(-50%);
+    }
+    .word_active {
+        display: none;
     }
 
 }

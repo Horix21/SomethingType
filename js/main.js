@@ -13,6 +13,7 @@ var timeInMs=1000;
 var j = 0;
 var k = 0;
 var m = 0;
+var y = 0;
 var starting = 0;
 var time = 0;
 var shownWords= [];
@@ -24,6 +25,27 @@ var mil = 0;
 var x = 0;
 var charList = [];
 var showing = "";
+var wordsTyped = "";
+var charNumber = 0;
+var totalCharNumber
+var typingWord = "";
+
+function endTest() { 
+    document.getElementById("test").style.display = "none";
+    document.getElementById("timer").style.display = "none";
+    document.getElementById("myInput").style.display = "none";
+    document.getElementById("word").style.display = "none";
+    document.getElementById("refresh").style.display = "none";
+    document.getElementById("buttons").style.display = "none";
+    document.getElementById('logo-img').style.display = "none";
+    
+
+    document.getElementById('score-screen').style.display = "block";
+    document.getElementById('wpm').textContent = (correctCount*(60/(time/1000))).toFixed(2) + " WPM" + "     " + correctCount + '/' + (correctCount+incorrectCount);
+    document.getElementById('myInput').disabled = true;
+    document.getElementById('time').textContent = (time/1000).toFixed(2) + " seconds";
+    document.getElementById('accuracy').textContent = Math.round((correctCount / (correctCount + incorrectCount) ) * 100) + '% accuracy'
+}
 
 document.getElementById('refresh').addEventListener('click', () => {
     
@@ -32,6 +54,9 @@ document.getElementById('refresh').addEventListener('click', () => {
     document.getElementById('word').textContent = '';
     setWords(wordsCount);
     i = 0;
+    wordsTyped = "";
+    charNumber = 0;
+    
     resetTimer();
     correctCount = 0; incorrectCount = 0;
 
@@ -84,7 +109,7 @@ function timerCycle() {
             min = '0' + min;
         }
 
-        console.log(mil + ' ' + sec);
+
 
         if(min > 0){
             document.getElementById('timer').textContent = min + ':' + sec;
@@ -99,6 +124,7 @@ function timerCycle() {
 function resetTimer() {
     document.getElementById('timer').textContent = 0;
     stoptime = true;
+    
     mil = 0
     sec = 0;
     min = 0;
@@ -109,6 +135,7 @@ setWords(60);
 
 document.getElementById('60w').addEventListener('click', () => {
     setWords(60);
+    resetTimer();
     clickCount = 0;
     if (clickCount == 0) {
         document.getElementById('60w').style.color = "#e2b714";
@@ -120,6 +147,7 @@ document.getElementById('60w').addEventListener('click', () => {
 
 document.getElementById('30w').addEventListener('click', () => {
     setWords(30);
+    resetTimer();
     clickCount = 1;
     if (clickCount == 1) {
         document.getElementById('60w').style.color = "#000000";
@@ -131,6 +159,7 @@ document.getElementById('30w').addEventListener('click', () => {
 
 document.getElementById('10w').addEventListener('click', () => {
     setWords(10);
+    resetTimer();
     clickCount = 2;
     if (clickCount == 2) {
         document.getElementById('60w').style.color = "#000000";
@@ -143,9 +172,10 @@ document.getElementById('10w').addEventListener('click', () => {
 
 
 function setWords(wordCount) {
+    totalCharNumber = 0;
+    document.getElementById('greenText').innerHTML = '';
     wordsCount = wordCount;
 
-    document.getElementById('greenText').textContent = '';
     showing = '';
     shownWords = [];
 
@@ -153,59 +183,67 @@ function setWords(wordCount) {
     {
         shownWords[m] = words[Math.floor(Math.random() * words.length)];
     }
-    for (m = 0; m < shownWords.length; m++) {
-        showing += ' ' + shownWords[m];
-
-        if ((m + 1) % 16 == 0) {
-            showing += '<br>';
-        }
+    for(m = 0; m <= shownWords.length - 1; m++){
+        var node = document.createElement("letter");
+        node.textContent = shownWords[m] + " ";
+        document.getElementById("greenText").appendChild(node);
+        //document.getElementById('greenText').textContent = document.getElementById('word-active').children[m].value
+        //console.log(document.getElementById('greenText').children[m].textContent)
+        
+        
     }
-    document.getElementById('greenText').innerHTML = showing;
+    
+    //console.log(document.getElementById('greenText').children[1].textContent)
+    
 }
 
 
+
 i = 0;
+
 function getVal() {
-    
+    totalCharNumber++;
+    charNumber++;
+
     let hi = document.querySelector('input').value;
     let result = hi.includes(' ');
+    let color = document.getElementById('greenText').children[i].textContent.includes(document.getElementById('myInput').value)
+
+    console.log(document.getElementById('myInput').value + ' ' + document.getElementById('greenText').children[i].textContent)
+    if(color) {
+        document.getElementById("greenText").children[i].className = "right focused-word"
+        document.getElementById("myInput").className = "write-box right"
+        //console.log(document.getElementById('myInput').className)
+    }
+    if(!color) {
+        document.getElementById('greenText').children[i].className = "wrong focused-word"
+        document.getElementById('myInput').className = "write-box wrong"
+    }
+    
 
     if(result == true){
+        charNumber = 0;
         typedWords = document.getElementById("myInput").value;
+        wordsTyped += document.getElementById('myInput').value;
+        //console.log(typedWords.slice(0, -1));
         if(i < wordsCount ){
-            if(typedWords == shownWords[i] + ' '){
+            
+            if(typedWords.slice(0, -1) == shownWords[i]){
                 correctCount += 1;
-                document.getElementById('word').textContent = shownWords[i];
-                document.getElementById('word').style.color = "green";
+                document.getElementById('greenText').children[i].className = "right";
+                //document.getElementById('greenText').children[i + 1].className = "focused-word";
             }
-            else if (typedWords != shownWords[i] + ' ') {
+            else if (typedWords.slice(0, -1) != shownWords[i]) {
                 incorrectCount += 1;
-                document.getElementById('word').textContent = typedWords + '/ ' + shownWords[i];
-                document.getElementById('word').style.color = "red";
+                document.getElementById('greenText').children[i].className = "wrong";
             }
         }
-        else if(i == wordsCount - 1){
-            console.log(correctCount + " correct")
-            console.log(incorrectCount + " incorrect")
-        }
-        
+
         document.getElementById("myInput").value='';
         i += 1;
 
         if(correctCount+incorrectCount == wordsCount ) {
-            document.getElementById("test").style.display = "none";
-            document.getElementById("timer").style.display = "none";
-            document.getElementById("myInput").style.display = "none";
-            document.getElementById("word").style.display = "none";
-            document.getElementById("refresh").style.display = "none";
-            document.getElementById("buttons").style.display = "none";
-            
-
-            document.getElementById('score-screen').style.display = "block";
-            document.getElementById('wpm').textContent = (correctCount*(60/(time/1000))).toFixed(2) + " WPM" + "     " + correctCount + '/' + (correctCount+incorrectCount);
-            document.getElementById('myInput').disabled = true;
-            document.getElementById('time').textContent = (time/1000).toFixed(2) + " seconds";
-            document.getElementById('accuracy').textContent = Math.round((correctCount / (correctCount + incorrectCount) ) * 100) + '% accuracy'
+            endTest();
         }
     }
 }
