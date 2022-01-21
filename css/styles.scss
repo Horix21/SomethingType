@@ -20,6 +20,10 @@
 body {
     background-color: var(--primary-color);
     
+    .space {
+        margin-left:8px;
+    }
+
     .focused-word {
         text-decoration: underline;
     }
@@ -83,7 +87,7 @@ body {
             margin-bottom: -10px;
             font-size: 1.9em;
         }
-        width: 63%;
+        max-width: 63%;
         background-color: var(--primary-color);
         margin: 50px 20%;
         overflow: hidden;
@@ -104,8 +108,12 @@ body {
     }
 
 
-    .green {
-       
+    .test-box-text {
+        width: 80%;
+        max-width: 1000px;
+        //display: inline-block;
+        //word-break: keep-all;
+        white-space:normal;
         font-size: .9em;
         color: var(--test-text-color);
         line-height: 10px;

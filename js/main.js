@@ -1,19 +1,15 @@
 const res = await fetch('https://horix21.github.io/SomethingType/js/words.json');
 const words = await res.json();
 
-var currentWords = 0;
-var currentInput = "";
-var timerconfig = 60;
+
 var stoptime = true;
 var correctCount = 0;
 var incorrectCount = 0;
 var i = 0;
 var typedWords = '';
-var timeInMs=1000;
 var j = 0;
 var k = 0;
-var m = 0;
-var y = 0;
+var counter = 0;
 var starting = 0;
 var time = 0;
 var shownWords= [];
@@ -22,13 +18,10 @@ var clickCount = 0;
 var sec = 0;
 var min = 0;
 var mil = 0;
-var x = 0;
-var charList = [];
-var showing = "";
-var wordsTyped = "";
 var charNumber = 0;
-var totalCharNumber
 var typingWord = "";
+var typed = "";
+var node;
 
 function endTest() { 
     document.getElementById("test").style.display = "none";
@@ -54,9 +47,7 @@ document.getElementById('refresh').addEventListener('click', () => {
     document.getElementById('word').textContent = '';
     setWords(wordsCount);
     i = 0;
-    wordsTyped = "";
     charNumber = 0;
-    
     resetTimer();
     correctCount = 0; incorrectCount = 0;
 
@@ -109,8 +100,6 @@ function timerCycle() {
             min = '0' + min;
         }
 
-
-
         if(min > 0){
             document.getElementById('timer').textContent = min + ':' + sec;
         }
@@ -130,6 +119,8 @@ function resetTimer() {
     min = 0;
     k = 0;
     starting = 0;
+    typingWord = ""
+    typed = "";
 }
 setWords(60);
 
@@ -175,70 +166,66 @@ function setWords(wordCount) {
     i = 0;
     correctCount = 0;
     incorrectCount = 0;
-    totalCharNumber = 0;
-    document.getElementById('greenText').innerHTML = '';
+    document.getElementById('test-text').innerHTML = '';
     wordsCount = wordCount;
 
-    showing = '';
     shownWords = [];
 
-    for(m = 0; m <= wordCount - 1; m++)
+    for(counter = 0; counter <= wordCount - 1; counter++)
     {
-        shownWords[m] = words[Math.floor(Math.random() * words.length)];
+        shownWords[counter] = words[Math.floor(Math.random() * words.length)];
     }
-    for(m = 0; m <= shownWords.length - 1; m++){
-        var node = document.createElement("letter");
-        node.textContent = shownWords[m] + " ";
-        document.getElementById("greenText").appendChild(node);
-        //document.getElementById('greenText').textContent = document.getElementById('word-active').children[m].value
-        //console.log(document.getElementById('greenText').children[m].textContent)
-        
-        
+    for(counter = 0; counter <= shownWords.length - 1; counter++){
+        node = document.createElement("word");
+        node.textContent = shownWords[counter] + ' ';
+        document.getElementById("test-text").appendChild(node)  
     }
     
-    //console.log(document.getElementById('greenText').children[1].textContent)
-    
+
 }
-
-
 
 i = 0;
 
 function getVal() {
-    totalCharNumber++;
     charNumber++;
+    typed = "";
 
     let hi = document.querySelector('input').value;
     let result = hi.includes(' ');
-    let color = document.getElementById('greenText').children[i].textContent.includes(document.getElementById('myInput').value)
 
-    console.log(document.getElementById('myInput').value + ' ' + document.getElementById('greenText').children[i].textContent)
+    typingWord = document.getElementById("myInput").value;
+    
+    
+    for(counter = 0; counter <= typingWord.length-1; counter++){
+        typed = typed + shownWords[i].charAt(counter)
+    }
+    
+    let color = (typed == typingWord) 
+
     if(color) {
-        document.getElementById("greenText").children[i].className = "right focused-word"
+        document.getElementById("test-text").children[i].className = "right focused-word"
         document.getElementById("myInput").className = "write-box right"
-        //console.log(document.getElementById('myInput').className)
     }
     if(!color) {
-        document.getElementById('greenText').children[i].className = "wrong focused-word"
+        document.getElementById('test-text').children[i].className = "wrong focused-word"
         document.getElementById('myInput').className = "write-box wrong"
     }
     
 
     if(result == true){
+        
         charNumber = 0;
         typedWords = document.getElementById("myInput").value;
-        wordsTyped += document.getElementById('myInput').value;
-        //console.log(typedWords.slice(0, -1));
+
         if(i < wordsCount ){
             
             if(typedWords.slice(0, -1) == shownWords[i]){
                 correctCount += 1;
-                document.getElementById('greenText').children[i].className = "right";
-                //document.getElementById('greenText').children[i + 1].className = "focused-word";
+                document.getElementById('test-text').children[i].className = "right";
             }
             else if (typedWords.slice(0, -1) != shownWords[i]) {
                 incorrectCount += 1;
-                document.getElementById('greenText').children[i].className = "wrong";
+                document.getElementById('test-text').children[i].className = "wrong";
             }
         }
 
