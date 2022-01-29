@@ -1,180 +1,158 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
 :root {
-    --primary-color: #333436;
-    --test-text-color: #616365;
-    --button-color: #e2b714;
-    --write-box-text-color: #e2b714;
-    --score-text-color: #e2b714;
-    --refresh-button-color: #616365;
+  --primary-color: #333436;
+  --test-text-color: #616365;
+  --button-color: #e2b714;
+  --write-box-text-color: #e2b714;
+  --score-text-color: #e2b714;
+  --refresh-button-color: #616365;
 }
 
-
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Open Sans', serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", serif;
 }
 
 body {
+  background-color: var(--primary-color);
+
+  .space {
+    margin-left: 8px;
+  }
+
+  .focused-word {
+    text-decoration: underline;
+  }
+
+  .right {
+    color: #d0d0d0;
+  }
+  .wrong {
+    color: #ca4747;
+  }
+
+  .logo {
+    margin-top: 10px;
+    margin-left: 10px;
+    position: absolute;
+  }
+
+  .buttonss {
+    font-size: 1.4em;
+    margin-top: 10px;
+    margin-left: 95.5%;
+    color: #000000;
+    .s60 {
+      margin-right: 5px;
+      border: none;
+      background: transparent;
+    }
+    .s30 {
+      margin-right: 5px;
+      border: none;
+      background: transparent;
+    }
+    .s10 {
+      margin-right: 5px;
+      border: none;
+      background: transparent;
+    }
+  }
+
+  // how are you
+  .container {
+    .test-box {
+      text-align: left;
+      font-size: 1.8em;
+    }
+    .timer {
+      margin-left: 1em;
+      margin-bottom: -10px;
+      font-size: 1.9em;
+    }
+    max-width: 63%;
     background-color: var(--primary-color);
-    
-    .space {
-        margin-left:8px;
+    margin: 50px 20%;
+    overflow: hidden;
+    margin-top: 8em;
+    padding: 15px;
+    line-height: 50px;
+    div {
+      font-family: inherit;
     }
+  }
 
-    .focused-word {
-        text-decoration: underline;
-    }
+  span {
+    font-family: inherit;
+    border-radius: 5px;
+    padding: 5px;
+  }
 
-    .right {
-        color: #d0d0d0;
-    }
-    .wrong {
-        color: #ca4747;
-    }
+  .test-box-text {
+    width: 80%;
+    white-space: normal;
+    font-size: 0.9em;
+    color: var(--test-text-color);
+    line-height: 10px;
+  }
 
-    .logo {
-        margin-top: 10px;
-        margin-left: 10px;
-        position: absolute;
-    }
+  form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 
-    .buttonss {
-        font-size: 1.4em;
-        margin-top: 10px;
-        margin-left: 95.5%;
-        color: #000000;
-        .s60 {
-            margin-right: 5px;
-            border: none;
-            background: transparent;
-        }
-        .s30 {
-            margin-right: 5px;
-            border: none;
-            background: transparent;    
-        }
-        .s10 {
-            margin-right: 5px;
-            border: none;
-            background: transparent;
-        }
-        
-        
-    }
+  .write-box {
+    outline: none;
+    font-family: inherit;
+    font-size: 1.5em;
+    padding: 20px;
+    width: 80%;
+    max-width: 60%;
+    margin-top: -2vh;
+    min-height: 75px;
+    max-height: 15vh;
+    background-color: var(--primary-color);
+    text-decoration: none;
+    outline: none;
+    color: var(--write-box-text-color);
+    position: absolute;
+    border-radius: 0.6em;
+  }
 
-    .right-wrong {
-        font-size: 2em;
-        position: absolute;
-        margin-left: auto;
-        margin-right: auto;
-        left: 0;
-        right: 0;
-        text-align: center;
-        top: 19em;
-    }
-    
-    // how are you
-    .container {
-        .test-box {
-            text-align:left;
-            font-size: 1.8em;
-        }
-        .timer {
-            margin-left: 1em;
-            margin-bottom: -10px;
-            font-size: 1.9em;
-        }
-        max-width: 63%;
-        background-color: var(--primary-color);
-        margin: 50px 20%;
-        overflow: hidden;
-        margin-top: 8em;
-        padding: 15px;
-        line-height: 50px;
-        div {
-            font-family: inherit;
-        }
-    }
+  .refresh-button {
+    border-color: var(--refresh-button-color);
+    font-family: inherit;
+    font-size: inherit;
+    width: 10%;
+    height: 2.75em;
+    text-align: center;
+    background-color: var(--refresh-button-color);
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    position: sticky;
+    margin-top: 5em;
+    border-radius: 0.6em;
+  }
 
-    
-
-    span {
-        font-family: inherit;
-        border-radius: 5px;
-        padding: 5px;
-    }
-
-
-    .test-box-text {
-        width: 80%;
-        max-width: 1000px;
-        //display: inline-block;
-        //word-break: keep-all;
-        white-space:normal;
-        font-size: .9em;
-        color: var(--test-text-color);
-        line-height: 10px;
-    }
-
-    form {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-    }
-
-    .write-box {
-        outline: none;
-        font-family: inherit;
-        font-size: 1.5em;
-        padding: 20px;
-        width: 80%;
-        max-width: 1000px;
-        margin-top: -2vh;
-        min-height: 75px;
-        max-height: 15vh;
-        background-color: var(--primary-color);
-        text-decoration: none;
-        outline: none;
-        color: var(--write-box-text-color);
-        position: absolute;
-        border-radius: .6em;
-    }
-
-    .refresh-button {
-        border-color: var(--refresh-button-color);
-        font-family: inherit;
-        font-size: inherit;
-        width: 10%;
-        height: 2.75em;
-        text-align: center;
-        background-color: var(--refresh-button-color);
-        justify-content: center;
-        margin-left: auto;
-        margin-right: auto;
-        position: sticky;
-        margin-top: 5em;
-        border-radius: .6em;
-        
-    }
-
-    .score {
-        color: var(--score-text-color);
-        display: none;
-        position: absolute;
-        justify-content: center;
-        margin: 0;
-        top: 35%;
-        font-size: 5em;
-        -ms-transform: translateY(-50%);
-        transform: translateY(-50%);
-    }
-    .word_active {
-        display: none;
-    }
-
+  .score {
+    color: var(--score-text-color);
+    display: none;
+    position: absolute;
+    justify-content: center;
+    margin: 0;
+    top: 35%;
+    font-size: 5em;
+    max-width: 60%;
+    max-height: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+  .word_active {
+    display: none;
+  }
 }
-
-

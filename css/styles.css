@@ -56,16 +56,6 @@ body .buttonss .s10 {
   border: none;
   background: transparent;
 }
-body .right-wrong {
-  font-size: 2em;
-  position: absolute;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-  text-align: center;
-  top: 19em;
-}
 body .container {
   max-width: 63%;
   background-color: var(--primary-color);
@@ -94,7 +84,6 @@ body span {
 }
 body .test-box-text {
   width: 80%;
-  max-width: 1000px;
   white-space: normal;
   font-size: 0.9em;
   color: var(--test-text-color);
@@ -111,7 +100,7 @@ body .write-box {
   font-size: 1.5em;
   padding: 20px;
   width: 80%;
-  max-width: 1000px;
+  max-width: 60%;
   margin-top: -2vh;
   min-height: 75px;
   max-height: 15vh;
@@ -146,6 +135,8 @@ body .score {
   margin: 0;
   top: 35%;
   font-size: 5em;
+  max-width: 60%;
+  max-height: 50%;
   transform: translateY(-50%);
 }
 body .word_active {
