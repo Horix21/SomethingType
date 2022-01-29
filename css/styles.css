@@ -84,6 +84,7 @@ body span {
 }
 body .test-box-text {
   width: 80%;
+  max-height: 1000px;
   white-space: normal;
   font-size: 0.9em;
   color: var(--test-text-color);
@@ -138,7 +139,4 @@ body .score {
   max-width: 60%;
   max-height: 50%;
   transform: translateY(-50%);
-}
-body .word_active {
-  display: none;
 }/*# sourceMappingURL=styles.css.map */
