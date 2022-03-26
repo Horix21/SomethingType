@@ -1,50 +1,91 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
-    <link rel="manifest" href="./favicon/site.webmanifest">
-    <link rel="mask-icon" href="./favicon/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
+  <head>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="./favicon/site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="./favicon/safari-pinned-tab.svg"
+      color="#5bbad5"
+    />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
 
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SomethingType</title>
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-    <img src="./images/logo4.png" class="logo" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" id="logo-img">
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <img
+      src="./images/logo4.png"
+      class="logo"
+      href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+      id="logo-img"
+    />
     <div class="buttonss" id="buttons">
-        <button class="s60" id="60w">60</button>
-        <button class="s30" id="30w">30</button>
-        <button class="s10" id="10w">10</button>
+      <button class="s60" id="60w">60</button>
+      <button class="s30" id="30w">30</button>
+      <button class="s10" id="10w">10</button>
     </div>
     <div class="right-wrong" id="word"></div>
     <div class="container">
-        <div id='timer' class="timer">0</div>
-        <section class="test-box" id="test">
-            <span class="test-box-text" id="test-text"></span>
-        </section>
+      <div id="timer" class="timer">0</div>
+      <section class="test-box" id="test">
+        <span class="test-box-text" id="test-text"></span>
+      </section>
+    </div>
+    <div class="vertical-menu" id="settingsMenu">
+      <div href="#" class="active">Menu</div>
+      <button id='Romanian' href="#">Language Romanian</button>
+      <button id='English' href="#">Language English</button>
     </div>
     <form>
-        <div id="word-active" class="word_active"></div>
-        <input contentEditable="true" autofocus autocomplete="off" type="text" class="write-box" id="myInput">
-        
-        <input type="button" id="refresh" class="refresh-button" value="Refresh"/>
+      <div id="word-active" class="word_active"></div>
+      <input
+        contenteditable="true"
+        autofocus
+        autocomplete="off"
+        type="text"
+        class="write-box"
+        id="myInput"
+      />
 
-        <section class="score" id="score-screen" onclick="window.location.reload()">
-            <p>You Scored:</p>
-            <p class="score-wpm" id="wpm"></p>
-            <p class="score-acc" id="accuracy"></p>
-            <p class="times" id="time"></p>
-        </section> 
+      <input
+        type="button"
+        id="refresh"
+        class="refresh-button"
+        value="Refresh"
+      />
+
+      <section
+        class="score"
+        id="score-screen"
+        onclick="window.location.reload()"
+      >
+        <p>You Scored:</p>
+        <p class="score-wpm" id="wpm"></p>
+        <p class="score-acc" id="accuracy"></p>
+        <p class="times" id="time"></p>
+      </section>
     </form>
     <script src="js/main.js" type="module" defer></script>
-</body>
+  </body>
 </html>
-
-<!--hi how are you-->

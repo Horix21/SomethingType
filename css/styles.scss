@@ -17,6 +17,28 @@
 }
 
 body {
+
+  .pressed {
+    display:inline-block;
+    padding:0.2em 0.6em;
+    color: #000000;
+    border:0.2em solid;
+    border-color: #e2b714;
+    background: #e2b714;
+    margin:0 0.3em 0.3em 0;
+    border-radius:0.12em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight:300;
+    text-align:center;
+    transition: all .5s;
+  }
+  .pressed:hover {
+    color:#000000;
+    border:0.2em solid #000000 !important;
+    background-color:#e2b714;
+  }
   background-color: var(--primary-color);
   .space {
     margin-left: 8px;
@@ -42,22 +64,70 @@ body {
   .buttonss {
     font-size: 1.4em;
     margin-top: 10px;
-    margin-left: 95.5%;
-    color: #000000;
+    margin-left: 92%;
+    //color: #000000;
     .s60 {
-      margin-right: 5px;
-      border: none;
+      display:inline-block;
+      padding:0.2em 0.6em ;
+      color: #e2b714;
+      border:0.2em solid;
+      border-color: #e2b714;
       background: transparent;
+      margin:0 0.3em 0.3em 0;
+      border-radius:0.12em;
+      box-sizing: border-box;
+      text-decoration:none;
+      font-family:'Roboto',sans-serif;
+      font-weight:300;
+      text-align:center;
+      transition: all .5s;
+    }
+    .s60:hover {
+      color:#000000;
+      border:0.2em solid #000000 !important;
+      background-color:#e2b714;
     }
     .s30 {
-      margin-right: 5px;
-      border: none;
+      display:inline-block;
+      padding:0.2em 0.6em ;
+      color: #e2b714;
+      border:0.2em solid;
+      border-color: #e2b714;
       background: transparent;
+      margin:0 0.3em 0.3em 0;
+      border-radius:0.12em;
+      box-sizing: border-box;
+      text-decoration:none;
+      font-family:'Roboto',sans-serif;
+      font-weight:300;
+      text-align:center;
+      transition: all .5s;
+    }
+    .s30:hover {
+      color:#000000;
+      border:0.2em solid #000000 !important;
+      background-color:#e2b714;
     }
     .s10 {
-      margin-right: 5px;
-      border: none;
+      display:inline-block;
+      padding:0.2em 0.6em ;
+      color: #e2b714;
+      border:0.2em solid;
+      border-color: #e2b714;
       background: transparent;
+      margin:0 0.3em 0.3em 0;
+      border-radius:0.12em;
+      box-sizing: border-box;
+      text-decoration:none;
+      font-family:'Roboto',sans-serif;
+      font-weight:300;
+      text-align:center;
+      transition: all .5s;
+    }
+    .s10:hover {
+      color:#000000;
+      border:0.2em solid #000000 !important;
+      background-color:#e2b714;
     }
   }
 
@@ -99,6 +169,58 @@ body {
     line-height: 10px;
   }
 
+  .vertical-menu {
+    width: 50%; 
+    display:none;
+    border-radius: 5px;
+    //make the element sit in the center of the screen
+    margin-left: auto;
+    margin-right: auto;
+    //make the element sit on top of everything else
+    position: absolute;
+    top: 15%;
+    left: 0;
+    right: 0;
+    bottom: 35%;
+    background-color: var(--primary-color);
+    overflow: hidden;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    //make it sit on top of the other elements
+    z-index: 1;
+    //make every element behind it darker
+    box-shadow:0 0 0 1600px rgba(0,0,0,0.65);
+  }
+  
+  .vertical-menu div {
+    background-color: var(--primary-color); 
+    color: var(--test-text-color);
+    font-size: 1.9em;
+    display: block; 
+    padding: 12px; 
+    text-decoration: none;
+  }
+
+  .vertical-menu button {
+    text-align: left;
+    background-color: var(--primary-color); 
+    color: var(--test-text-color);
+    font-size: 1.3em;
+    width: 100%;
+    border-color: transparent;
+    display: block; 
+    padding: 12px; 
+    text-decoration: none; 
+  }
+  
+  .vertical-menu button:hover {
+    background-color: #ccc; /* Dark grey background on mouse-over */
+  }
+  
+  .vertical-menu button.active {
+    background-color: --primary-color; /* Add a green color to the "active/current" link */
+    color: var(--test-text-color);
+  }
+
   form {
     width: 100%;
     display: flex;
@@ -121,10 +243,11 @@ body {
     color: var(--write-box-text-color);
     position: absolute;
     border-radius: 0.6em;
+    border-color: grey;
   }
 
   .refresh-button {
-    border-color: var(--refresh-button-color);
+    border-color: transparent;
     font-family: inherit;
     font-size: inherit;
     width: 10%;
