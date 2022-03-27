@@ -5,13 +5,15 @@ document.getElementById("Romanian").addEventListener("click", async function() {
   res = await fetch('https://horix21.github.io/SomethingType/js/romanian_words.json');
   words = await res.json();
   setWords(wordsCount)
-  console.log(words)
+  document.getElementById("settingsMenu").style.display = "none";
+  ok = 1;
 });
 document.getElementById("English").addEventListener("click", async function() {
   res = await fetch('https://horix21.github.io/SomethingType/js/english_words.json');
   words = await res.json();
   setWords(wordsCount)
-  console.log(words)
+  document.getElementById("settingsMenu").style.display = "none";
+  ok = 1;
 });
 
 res = await fetch('https://horix21.github.io/SomethingType/js/english_words.json');
@@ -40,27 +42,34 @@ var node;
 
 var ok = 1;
 document.addEventListener("keydown", function (e) {
-  if (e.key == "Escape") {
-    if(ok == 1){
-      document.getElementById("settingsMenu").style.display = "block";
-      document.getElementById("myInput").setAttribute('disabled', 'disabled');
-      ok += 1;
-    }
-    
-    if (ok == 0){
-      document.getElementById("settingsMenu").style.display = "none";
-      ok += 1;
-      document.getElementById("myInput").removeAttribute('disabled', 'disabled');
-      
-      
-    }
-    
-    if (ok == 2){
-      ok = 0;
-    }
-    
+  if(e.key == "Escape") {
+    openMenu();
   }
 });
+
+document.getElementById("menu-button").addEventListener("click", () => {
+  openMenu();
+});
+
+function openMenu() {
+  if(ok == 1){
+    document.getElementById("settingsMenu").style.display = "block";
+    document.getElementById("myInput").setAttribute('disabled', 'disabled');
+    ok += 1;
+  }
+  
+  if (ok == 0){
+    document.getElementById("settingsMenu").style.display = "none";
+    ok += 1;
+    document.getElementById("myInput").removeAttribute('disabled', 'disabled');
+    
+    
+  }
+  
+  if (ok == 2){
+    ok = 0;
+  }
+}
 
 function endTest() {
   document.getElementById("test").style.display = "none";

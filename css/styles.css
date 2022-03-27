@@ -20,6 +20,10 @@ body {
   background-color: var(--primary-color);
 }
 
+body .color-band {
+  display: none;
+}
+
 body .pressed {
   display: inline-block;
   padding: 0.2em 0.6em;
@@ -85,7 +89,6 @@ body .buttonss .s60 {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   text-decoration: none;
-  font-family: 'Roboto',sans-serif;
   font-weight: 300;
   text-align: center;
   -webkit-transition: all .5s;
@@ -110,7 +113,6 @@ body .buttonss .s30 {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   text-decoration: none;
-  font-family: 'Roboto',sans-serif;
   font-weight: 300;
   text-align: center;
   -webkit-transition: all .5s;
@@ -135,7 +137,6 @@ body .buttonss .s10 {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   text-decoration: none;
-  font-family: 'Roboto',sans-serif;
   font-weight: 300;
   text-align: center;
   -webkit-transition: all .5s;
@@ -188,6 +189,38 @@ body .test-box-text {
   line-height: 10px;
 }
 
+body .menu-button {
+  background: transparent;
+  border: none;
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  margin-left: 300px;
+  margin-top: 10px;
+  display: inline-block;
+  padding: 0.2em 0.6em;
+  color: #e2b714;
+  border: 0.2em solid;
+  border-color: #e2b714;
+  background: transparent;
+  border-radius: 0.12em;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-decoration: none;
+  outline: none;
+  font-size: 1em;
+  font-weight: 800;
+  text-align: center;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+}
+
+body .menu-button:hover {
+  color: #000000;
+  border: 0.2em solid #000000 !important;
+  background-color: #e2b714;
+}
+
 body .vertical-menu {
   width: 50%;
   display: none;
@@ -201,8 +234,6 @@ body .vertical-menu {
   bottom: 35%;
   background-color: var(--primary-color);
   overflow: hidden;
-  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   z-index: 1;
   -webkit-box-shadow: 0 0 0 1600px rgba(0, 0, 0, 0.65);
           box-shadow: 0 0 0 1600px rgba(0, 0, 0, 0.65);
@@ -270,22 +301,35 @@ body .write-box {
 }
 
 body .refresh-button {
-  border-color: transparent;
-  font-family: inherit;
-  font-size: inherit;
-  width: 10%;
-  height: 2.75em;
-  text-align: center;
-  background-color: var(--refresh-button-color);
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  background: transparent;
+  border: none;
+  position: absolute;
+  width: 300px;
   margin-left: auto;
   margin-right: auto;
-  position: -webkit-sticky;
-  position: sticky;
-  margin-top: 5em;
-  border-radius: 0.6em;
+  margin-top: 4.5em;
+  display: inline-block;
+  height: 70px;
+  padding: 0.2em 0.6em;
+  color: #e2b714;
+  border: 0.2em solid;
+  border-color: #e2b714;
+  background: transparent;
+  border-radius: 0.12em;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-decoration: none;
+  font-size: 1em;
+  font-weight: 800;
+  text-align: center;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+}
+
+body .refresh-button:hover {
+  color: #000000;
+  border: 0.2em solid #000000 !important;
+  background-color: #e2b714;
 }
 
 body .score {
