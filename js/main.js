@@ -79,6 +79,7 @@ function endTest() {
   document.getElementById("refresh").style.display = "none";
   document.getElementById("buttons").style.display = "none";
   document.getElementById("logo-img").style.display = "none";
+  document.getElementById("menu-button").style.display = "none";
 
   document.getElementById("score-screen").style.display = "block";
   document.getElementById("wpm").textContent =
