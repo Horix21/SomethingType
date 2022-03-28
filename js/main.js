@@ -1,22 +1,34 @@
 var res;
 var words;
 
-document.getElementById("Romanian").addEventListener("click", async function() {
-  res = await fetch('https://horix21.github.io/SomethingType/js/romanian_words.json');
+document
+  .getElementById("Romanian")
+  .addEventListener("click", async function () {
+    openMenu();
+    document.getElementById("myInput").focus();
+    res = await fetch(
+      "https://horix21.github.io/SomethingType/js/romanian_words.json"
+    );
+    words = await res.json();
+    setWords(wordsCount);
+    document.getElementById("settingsMenu").style.display = "none";
+    ok = 1;
+  });
+document.getElementById("English").addEventListener("click", async function () {
+  openMenu();
+  document.getElementById("myInput").focus();
+  res = await fetch(
+    "https://horix21.github.io/SomethingType/js/english_words.json"
+  );
   words = await res.json();
-  setWords(wordsCount)
-  document.getElementById("settingsMenu").style.display = "none";
-  ok = 1;
-});
-document.getElementById("English").addEventListener("click", async function() {
-  res = await fetch('https://horix21.github.io/SomethingType/js/english_words.json');
-  words = await res.json();
-  setWords(wordsCount)
+  setWords(wordsCount);
   document.getElementById("settingsMenu").style.display = "none";
   ok = 1;
 });
 
-res = await fetch('https://horix21.github.io/SomethingType/js/english_words.json');
+res = await fetch(
+  "https://horix21.github.io/SomethingType/js/english_words.json"
+);
 words = await res.json();
 
 var stoptime = true;
@@ -42,7 +54,7 @@ var node;
 
 var ok = 1;
 document.addEventListener("keydown", function (e) {
-  if(e.key == "Escape") {
+  if (e.key == "Escape") {
     openMenu();
   }
 });
@@ -52,21 +64,19 @@ document.getElementById("menu-button").addEventListener("click", () => {
 });
 
 function openMenu() {
-  if(ok == 1){
+  if (ok == 1) {
     document.getElementById("settingsMenu").style.display = "block";
-    document.getElementById("myInput").setAttribute('disabled', 'disabled');
+    document.getElementById("myInput").setAttribute("disabled", "disabled");
     ok += 1;
   }
-  
-  if (ok == 0){
+
+  if (ok == 0) {
     document.getElementById("settingsMenu").style.display = "none";
     ok += 1;
-    document.getElementById("myInput").removeAttribute('disabled', 'disabled');
-    
-    
+    document.getElementById("myInput").removeAttribute("disabled", "disabled");
   }
-  
-  if (ok == 2){
+
+  if (ok == 2) {
     ok = 0;
   }
 }
@@ -254,7 +264,7 @@ function getVal() {
     document.getElementById("test-text").children[i].className =
       "right focused-word";
     document.getElementById("myInput").className = "write-box right";
-  } 
+  }
   if (!color) {
     document.getElementById("test-text").children[i].className =
       "wrong focused-word";
