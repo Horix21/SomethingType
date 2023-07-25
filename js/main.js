@@ -153,7 +153,7 @@ function timerCycle() {
     if (mil >= 1000) {
       mil = 0;
       sec++;
-    }
+    } //test
     if (sec == 60) {
       min++;
       sec = 0;
