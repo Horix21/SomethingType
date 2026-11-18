@@ -1,338 +1,213 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+// SomethingType styles.
+// The Open Sans font is loaded from a <link> in index.html.
 
+// ---------- Design tokens ----------
 :root {
   --primary-color: #333436;
   --test-text-color: #616365;
-  --button-color: #e2b714;
-  --write-box-text-color: #e2b714;
-  --score-text-color: #e2b714;
-  --refresh-button-color: #616365;
+  --accent-color: #e2b714;
+  --right-color: #d0d0d0;
+  --wrong-color: #ca4747;
 }
 
+// ---------- Mixins ----------
+
+// Yellow outlined button that fills in on hover.
+@mixin outline-button {
+  display: inline-block;
+  padding: 0.2em 0.6em;
+  color: var(--accent-color);
+  border: 0.2em solid var(--accent-color);
+  border-radius: 0.12em;
+  background: transparent;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-weight: 300;
+  text-align: center;
+  transition: all 0.5s;
+
+  &:hover {
+    color: #000000;
+    border-color: #000000;
+    background-color: var(--accent-color);
+  }
+}
+
+// ---------- Base ----------
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Open Sans", serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 body {
-  .color-band {
-    // color:#e2b714;
-    // background-color: #e2b714;
-    // width: 100%;
-    // z-index: 1;
-    // padding-top:100px;
-    // margin-top: -10px;
-    display: none;
-  }
-  
-  .pressed {
-    display:inline-block;
-    padding:0.2em 0.6em;
-    color: #000000;
-    border:0.2em solid;
-    border-color: #e2b714;
-    background: #e2b714;
-    margin:0 0.3em 0.3em 0;
-    border-radius:0.12em;
-    box-sizing: border-box;
-    text-decoration:none;
-    font-family:'Roboto',sans-serif;
-    font-weight:300;
-    text-align:center;
-    transition: all .5s;
-  }
-  .pressed:hover {
-    color:#000000;
-    border:0.2em solid #000000 !important;
-    background-color:#e2b714;
-  }
   background-color: var(--primary-color);
-  .space {
-    margin-left: 8px;
+}
+
+.logo {
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+// ---------- Word-count buttons (JS toggles .pressed on the active one) ----------
+.buttonss {
+  margin-top: 10px;
+  margin-left: 92%;
+  font-size: 1.4em;
+}
+
+.s60,
+.s30,
+.s10,
+.pressed {
+  @include outline-button;
+  margin: 0 0.3em 0.3em 0;
+}
+
+.pressed {
+  color: #000000;
+  background: var(--accent-color);
+}
+
+// ---------- Test area ----------
+.container {
+  max-width: 63%;
+  margin: 8em 20% 50px;
+  padding: 15px;
+  overflow: hidden;
+  background-color: var(--primary-color);
+  line-height: 50px;
+
+  .test-box {
+    text-align: left;
+    font-size: 1.8em;
   }
 
-  .focused-word {
-    text-decoration: underline;
+  .timer {
+    margin-left: 1em;
+    margin-bottom: -10px;
+    font-size: 1.9em;
   }
+}
 
-  .right {
-    color: #d0d0d0;
-  }
-  .wrong {
-    color: #ca4747;
-  }
+.test-box-text {
+  padding: 5px;
+  font-size: 0.9em;
+  line-height: 10px;
+  color: var(--test-text-color);
+}
 
-  .logo {
-    margin-top: 10px;
-    margin-left: 10px;
-    position: absolute;
-  }
+// Word states set from main.js
+.focused-word {
+  text-decoration: underline;
+}
 
-  .buttonss {
-    font-size: 1.4em;
-    margin-top: 10px;
-    margin-left: 92%;
-    //color: #000000;
-    .s60 {
-      display:inline-block;
-      padding:0.2em 0.6em ;
-      color: #e2b714;
-      border:0.2em solid;
-      border-color: #e2b714;
-      background: transparent;
-      margin:0 0.3em 0.3em 0;
-      border-radius:0.12em;
-      box-sizing: border-box;
-      text-decoration:none;
-      //font-family:'Roboto',sans-serif;
-      font-weight:300;
-      text-align:center;
-      transition: all .5s;
-    }
-    .s60:hover {
-      color:#000000;
-      border:0.2em solid #000000 !important;
-      background-color:#e2b714;
-    }
-    .s30 {
-      display:inline-block;
-      padding:0.2em 0.6em ;
-      color: #e2b714;
-      border:0.2em solid;
-      border-color: #e2b714;
-      background: transparent;
-      margin:0 0.3em 0.3em 0;
-      border-radius:0.12em;
-      box-sizing: border-box;
-      text-decoration:none;
-      //font-family:'Roboto',sans-serif;
-      font-weight:300;
-      text-align:center;
-      transition: all .5s;
-    }
-    .s30:hover {
-      color:#000000;
-      border:0.2em solid #000000 !important;
-      background-color:#e2b714;
-    }
-    .s10 {
-      display:inline-block;
-      padding:0.2em 0.6em ;
-      color: #e2b714;
-      border:0.2em solid;
-      border-color: #e2b714;
-      background: transparent;
-      margin:0 0.3em 0.3em 0;
-      border-radius:0.12em;
-      box-sizing: border-box;
-      text-decoration:none;
-      //font-family:'Roboto',sans-serif;
-      font-weight:300;
-      text-align:center;
-      transition: all .5s;
-    }
-    .s10:hover {
-      color:#000000;
-      border:0.2em solid #000000 !important;
-      background-color:#e2b714;
-    }
-  }
+.right {
+  color: var(--right-color);
+}
 
-  // how are you
-  .container {
-    .test-box {
-      text-align: left;
-      font-size: 1.8em;
-    }
-    .timer {
-      margin-left: 1em;
-      margin-bottom: -10px;
-      font-size: 1.9em;
-    }
-    max-width: 63%;
+.wrong {
+  color: var(--wrong-color);
+}
+
+// ---------- Menu ----------
+.menu-button {
+  @include outline-button;
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  margin-top: 10px;
+  margin-left: 300px;
+  outline: none;
+  font-size: 1em;
+  font-weight: 800;
+}
+
+.vertical-menu {
+  display: none; // shown by main.js
+  position: absolute;
+  top: 15%;
+  right: 0;
+  bottom: 35%;
+  left: 0;
+  z-index: 1;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: var(--primary-color);
+  // Dims everything behind the menu.
+  box-shadow: 0 0 0 1600px rgba(0, 0, 0, 0.65);
+
+  div {
+    display: block;
+    padding: 12px;
     background-color: var(--primary-color);
-    margin: 50px 20%;
-    overflow: hidden;
-    margin-top: 8em;
-    padding: 15px;
-    line-height: 50px;
-    div {
-      font-family: inherit;
-    }
-  }
-
-  span {
-    font-family: inherit;
-    border-radius: 5px;
-    padding: 5px;
-  }
-
-  .test-box-text {
-    width: 80%;
-    max-height: 1000px;
-    white-space: normal;
-    font-size: 0.9em;
-    color: var(--test-text-color);
-    line-height: 10px;
-  }
-
-  .menu-button {
-    background:transparent;
-    border:none;
-    position:absolute;
-    width: 70px;
-    height: 70px;
-    margin-left: 300px;
-    margin-top: 10px;
-    display:inline-block;
-    padding:0.2em 0.6em ;
-    color: #e2b714;
-    border:0.2em solid;
-    border-color: #e2b714;
-    background: transparent;
-    //margin:0 0.3em 0.3em 0;
-    border-radius:0.12em;
-    box-sizing: border-box;
-    text-decoration:none;
-    outline:none;
-    //font-family:'Roboto',sans-serif;
-    font-size: 1em;
-    //align text on center
-    font-weight: 800;
-    text-align:center;
-    transition: all .5s;
-    
-    
-  }
-  .menu-button:hover {
-    color:#000000;
-    border:0.2em solid #000000 !important;
-    background-color:#e2b714;
-  }
-
-  .vertical-menu {
-    width: 50%; 
-    display:none;
-    border-radius: 5px;
-    //make the element sit in the center of the screen
-    margin-left: auto;
-    margin-right: auto;
-    //make the element sit on top of everything else
-    position: absolute;
-    top: 15%;
-    left: 0;
-    right: 0;
-    bottom: 35%;
-    background-color: var(--primary-color);
-    overflow: hidden;
-    //box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    z-index: 1;
-    box-shadow:0 0 0 1600px rgba(0,0,0,0.65);
-    
-  }
-  
-  .vertical-menu div {
-    background-color: var(--primary-color); 
     color: var(--test-text-color);
     font-size: 1.9em;
-    display: block; 
-    padding: 12px; 
-    text-decoration: none;
   }
 
-  .vertical-menu button {
-    text-align: left;
-    background-color: var(--primary-color); 
+  button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border-color: transparent;
+    background-color: var(--primary-color);
     color: var(--test-text-color);
     font-size: 1.3em;
-    width: 100%;
-    border-color: transparent;
-    display: block; 
-    padding: 12px; 
-    text-decoration: none; 
-  }
-  
-  .vertical-menu button:hover {
-    background-color: #ccc; /* Dark grey background on mouse-over */
-  }
-  
-  .vertical-menu button.active {
-    background-color: --primary-color; /* Add a green color to the "active/current" link */
-    color: var(--test-text-color);
+    text-align: left;
   }
 
-  form {
-    width: 100%;
-    display: flex;
-    justify-content: center;
+  button:hover {
+    background-color: #cccccc;
   }
+}
 
-  .write-box {
-    outline: none;
-    font-family: inherit;
-    font-size: 1.5em;
-    padding: 20px;
-    width: 80%;
-    max-width: 60%;
-    margin-top: -2vh;
-    min-height: 75px;
-    max-height: 15vh;
-    background-color: var(--primary-color);
-    text-decoration: none;
-    outline: none;
-    color: var(--write-box-text-color);
-    position: absolute;
-    border-radius: 0.6em;
-    border-color: grey;
-  }
+// ---------- Input ----------
+form {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
 
-  .refresh-button {
-    background:transparent;
-    border:none;
-    position:absolute;
-    width: 300px;
-    //align element to center
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 4.5em;
-    display:inline-block;
-    height: 70px;
-    padding:0.2em 0.6em ;
-    color: #e2b714;
-    border:0.2em solid;
-    border-color: #e2b714;
-    background: transparent;
-    //margin:0 0.3em 0.3em 0;
-    border-radius:0.12em;
-    box-sizing: border-box;
-    text-decoration:none;
-    //outline:none;
-    //font-family:'Roboto',sans-serif;
-    font-size: 1em;
-    //align text on center
-    font-weight: 800;
-    text-align:center;
-    transition: all .5s;
-  }
-  .refresh-button:hover {
-    color:#000000;
-    border:0.2em solid #000000 !important;
-    background-color:#e2b714;
-  }
+// Declared after .right/.wrong on purpose: its color wins, so the input text
+// stays yellow regardless of the .right/.wrong classes main.js puts on it.
+.write-box {
+  position: absolute;
+  width: 60%;
+  min-height: 75px;
+  max-height: 15vh;
+  margin-top: -2vh;
+  padding: 20px;
+  border-color: grey;
+  border-radius: 0.6em;
+  outline: none;
+  background-color: var(--primary-color);
+  color: var(--accent-color);
+  font-size: 1.5em;
+}
 
-  .score {
-    color: var(--score-text-color);
-    display: none;
-    position: absolute;
-    justify-content: center;
-    margin: 0;
-    top: 35%;
-    font-size: 5em;
-    max-width: 60%;
-    max-height: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-  }
+.refresh-button {
+  @include outline-button;
+  position: absolute;
+  width: 300px;
+  height: 70px;
+  margin: 4.5em auto 0;
+  font-size: 1em;
+  font-weight: 800;
+}
+
+// ---------- Score screen (shown by main.js) ----------
+.score {
+  display: none;
+  position: absolute;
+  top: 35%;
+  max-width: 60%;
+  max-height: 50%;
+  color: var(--accent-color);
+  font-size: 5em;
+  transform: translateY(-50%);
 }
