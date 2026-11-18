@@ -1,295 +1,202 @@
-var res;
-var words;
+// SomethingType: a small typing-speed test.
 
-document
-  .getElementById("Romanian")
-  .addEventListener("click", async function () {
-    openMenu();
-    document.getElementById("myInput").focus();
-    res = await fetch(
-      "https://horix21.github.io/SomethingType/js/romanian_words.json"
-    );
-    words = await res.json();
-    setWords(wordsCount);
-    document.getElementById("settingsMenu").style.display = "none";
-    ok = 1;
-  });
-document.getElementById("English").addEventListener("click", async function () {
-  openMenu();
-  document.getElementById("myInput").focus();
-  res = await fetch(
-    "https://horix21.github.io/SomethingType/js/english_words.json"
-  );
-  words = await res.json();
-  setWords(wordsCount);
-  document.getElementById("settingsMenu").style.display = "none";
-  ok = 1;
-});
+const WORD_LIST_URLS = {
+  English: new URL("./english_words.json", import.meta.url),
+  Romanian: new URL("./romanian_words.json", import.meta.url),
+};
+const DEFAULT_LANGUAGE = "English";
+const DEFAULT_WORD_COUNT = 60;
+const TIMER_TICK_MS = 250;
 
-res = await fetch(
-  "https://horix21.github.io/SomethingType/js/english_words.json"
-);
-words = await res.json();
+// Elements that are hidden when the test ends and the score screen appears.
+const HIDDEN_AT_END = [
+  "test", "timer", "myInput", "word", "refresh",
+  "buttons", "logo-img", "menu-button",
+];
 
-var stoptime = true;
-var correctCount = 0;
-var incorrectCount = 0;
-var i = 0;
-var typedWords = "";
-var j = 0;
-var k = 0;
-var counter = 0;
-var starting = 0;
-var time = 0;
-var shownWords = [];
-var wordsCount = 0;
-var clickCount = 0;
-var sec = 0;
-var min = 0;
-var mil = 0;
-var charNumber = 0;
-var typingWord = "";
-var typed = "";
-var node;
+const $ = (id) => document.getElementById(id);
+const input = $("myInput");
+const testText = $("test-text");
 
-var ok = 1;
-document.addEventListener("keydown", function (e) {
-  if (e.key == "Escape") {
-    openMenu();
+const state = {
+  words: [],        // word list for the selected language
+  shown: [],        // words in the current test
+  wordCount: DEFAULT_WORD_COUNT,
+  index: 0,         // word currently being typed
+  correct: 0,
+  incorrect: 0,
+  startTime: null,  // performance.now() at the first keystroke
+  timerId: null,
+  menuOpen: false,
+};
+
+const wordListCache = new Map();
+
+async function loadWords(language) {
+  if (!wordListCache.has(language)) {
+    const response = await fetch(WORD_LIST_URLS[language]);
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    wordListCache.set(language, await response.json());
   }
-});
-
-document.getElementById("menu-button").addEventListener("click", () => {
-  openMenu();
-});
-
-function openMenu() {
-  if (ok == 1) {
-    document.getElementById("settingsMenu").style.display = "block";
-    document.getElementById("myInput").setAttribute("disabled", "disabled");
-    ok += 1;
-  }
-
-  if (ok == 0) {
-    document.getElementById("settingsMenu").style.display = "none";
-    ok += 1;
-    document.getElementById("myInput").removeAttribute("disabled", "disabled");
-  }
-
-  if (ok == 2) {
-    ok = 0;
-  }
+  return wordListCache.get(language);
 }
 
-function endTest() {
-  document.getElementById("test").style.display = "none";
-  document.getElementById("timer").style.display = "none";
-  document.getElementById("myInput").style.display = "none";
-  document.getElementById("word").style.display = "none";
-  document.getElementById("refresh").style.display = "none";
-  document.getElementById("buttons").style.display = "none";
-  document.getElementById("logo-img").style.display = "none";
-  document.getElementById("menu-button").style.display = "none";
-
-  document.getElementById("score-screen").style.display = "block";
-  document.getElementById("wpm").textContent =
-    (correctCount * (60 / (time / 1000))).toFixed(2) +
-    " WPM" +
-    "     " +
-    correctCount +
-    "/" +
-    (correctCount + incorrectCount);
-  document.getElementById("myInput").disabled = true;
-  document.getElementById("time").textContent =
-    (time / 1000).toFixed(2) + " seconds";
-  document.getElementById("accuracy").textContent =
-    Math.round((correctCount / (correctCount + incorrectCount)) * 100) +
-    "% accuracy";
+async function setLanguage(language) {
+  try {
+    state.words = await loadWords(language);
+  } catch (error) {
+    console.error(`Could not load ${language} words:`, error);
+    testText.textContent = "Couldn't load the word list. Please try again.";
+    return;
+  }
+  newTest();
 }
 
-document.getElementById("refresh").addEventListener("click", () => {
-  document.getElementById("myInput").value = "";
-  document.getElementById("myInput").focus();
-  document.getElementById("word").textContent = "";
-  setWords(wordsCount);
-  i = 0;
-  charNumber = 0;
-  resetTimer();
-  correctCount = 0;
-  incorrectCount = 0;
-});
+// ---------- Menu ----------
 
-document.getElementById("myInput").addEventListener("input", () => {
-  getVal();
-  startTimer();
-});
+function setMenuOpen(open) {
+  state.menuOpen = open;
+  $("settingsMenu").style.display = open ? "block" : "none";
+  input.disabled = open;
+  if (!open) input.focus();
+}
+
+// ---------- Timer ----------
+
+const pad = (n) => String(n).padStart(2, "0");
+
+function formatElapsed(ms) {
+  const totalSeconds = Math.floor(ms / 1000);
+  if (totalSeconds < 60) return String(totalSeconds);
+  return `${pad(Math.floor(totalSeconds / 60))}:${pad(totalSeconds % 60)}`;
+}
 
 function startTimer() {
-  if (stoptime == true) {
-    stoptime = false;
-    timerCycle();
-  }
-}
-function stopTimer() {
-  if (stoptime == false) {
-    stoptime = true;
-  }
-}
-
-function timerCycle() {
-  if (stoptime == false) {
-    if (k < 1) {
-      starting = Date.now();
-      k++;
-    }
-
-    mil = parseInt(mil);
-    sec = parseInt(sec);
-    min = parseInt(min);
-
-    mil = Date.now() - starting - 1000 * sec;
-    time = Date.now() - starting;
-
-    if (mil >= 1000) {
-      mil = 0;
-      sec++;
-    } //test
-    if (sec == 60) {
-      min++;
-      sec = 0;
-    }
-    if ((sec < 10 || sec == 0) && min > 0) {
-      sec = "0" + sec;
-    }
-    if (min < 10 || min == 0) {
-      min = "0" + min;
-    }
-
-    if (min > 0) {
-      document.getElementById("timer").textContent = min + ":" + sec;
-    } else document.getElementById("timer").textContent = sec;
-
-    setTimeout(timerCycle, 1000);
-  }
+  if (state.startTime !== null) return;
+  state.startTime = performance.now();
+  state.timerId = setInterval(() => {
+    $("timer").textContent = formatElapsed(performance.now() - state.startTime);
+  }, TIMER_TICK_MS);
 }
 
 function resetTimer() {
-  document.getElementById("timer").textContent = 0;
-  stoptime = true;
-
-  mil = 0;
-  sec = 0;
-  min = 0;
-  k = 0;
-  starting = 0;
-  typingWord = "";
-  typed = "";
-}
-setWords(60);
-document.getElementById("60w").className = "pressed";
-
-document.getElementById("60w").addEventListener("click", () => {
-  setWords(60);
-  resetTimer();
-  clickCount = 0;
-  if (clickCount == 0) {
-    document.getElementById("60w").className = "pressed";
-    document.getElementById("30w").className = "s30";
-    document.getElementById("10w").className = "s10";
-  }
-  document.getElementById("myInput").focus();
-});
-
-document.getElementById("30w").addEventListener("click", () => {
-  setWords(30);
-  resetTimer();
-  clickCount = 1;
-  if (clickCount == 1) {
-    document.getElementById("60w").className = "s60";
-    document.getElementById("30w").className = "pressed";
-    document.getElementById("10w").className = "s10";
-  }
-  document.getElementById("myInput").focus();
-});
-
-document.getElementById("10w").addEventListener("click", () => {
-  setWords(10);
-  resetTimer();
-  clickCount = 2;
-  if (clickCount == 2) {
-    document.getElementById("60w").className = "s60";
-    document.getElementById("30w").className = "s30";
-    document.getElementById("10w").className = "pressed";
-  }
-  document.getElementById("myInput").focus();
-});
-
-function setWords(wordCount) {
-  i = 0;
-  correctCount = 0;
-  incorrectCount = 0;
-  document.getElementById("test-text").innerHTML = "";
-  wordsCount = wordCount;
-
-  shownWords = [];
-
-  for (counter = 0; counter <= wordCount - 1; counter++) {
-    shownWords[counter] = words[Math.floor(Math.random() * words.length)];
-  }
-  for (counter = 0; counter <= shownWords.length - 1; counter++) {
-    node = document.createElement("word");
-    node.textContent = shownWords[counter] + " ";
-    document.getElementById("test-text").appendChild(node);
-  }
+  clearInterval(state.timerId);
+  state.timerId = null;
+  state.startTime = null;
+  $("timer").textContent = "0";
 }
 
-i = 0;
+// ---------- Test lifecycle ----------
 
-function getVal() {
-  charNumber++;
-  typed = "";
+function newTest(wordCount = state.wordCount) {
+  state.wordCount = wordCount;
+  if (state.words.length === 0) return; // word list not loaded yet
+  state.index = 0;
+  state.correct = 0;
+  state.incorrect = 0;
+  state.shown = Array.from(
+    { length: wordCount },
+    () => state.words[Math.floor(Math.random() * state.words.length)]
+  );
 
-  let hi = document.querySelector("input").value;
-  let result = hi.includes(" ");
+  testText.replaceChildren(
+    ...state.shown.map((word) => {
+      const el = document.createElement("span");
+      el.textContent = `${word} `;
+      return el;
+    })
+  );
 
-  typingWord = document.getElementById("myInput").value;
-
-  for (counter = 0; counter <= typingWord.length - 1; counter++) {
-    typed = typed + shownWords[i].charAt(counter);
-  }
-
-  let color = typed == typingWord;
-
-  if (color) {
-    document.getElementById("test-text").children[i].className =
-      "right focused-word";
-    document.getElementById("myInput").className = "write-box right";
-  }
-  if (!color) {
-    document.getElementById("test-text").children[i].className =
-      "wrong focused-word";
-    document.getElementById("myInput").className = "write-box wrong";
-  }
-
-  if (result == true) {
-    charNumber = 0;
-    typedWords = document.getElementById("myInput").value;
-
-    if (i < wordsCount) {
-      if (typedWords.slice(0, -1) == shownWords[i]) {
-        correctCount += 1;
-        document.getElementById("test-text").children[i].className = "right";
-      } else if (typedWords.slice(0, -1) != shownWords[i]) {
-        incorrectCount += 1;
-        document.getElementById("test-text").children[i].className = "wrong";
-      }
-    }
-
-    document.getElementById("myInput").value = "";
-    i += 1;
-
-    if (correctCount + incorrectCount == wordsCount) {
-      endTest();
-    }
-  }
+  input.value = "";
+  input.className = "write-box";
+  $("word").textContent = "";
+  resetTimer();
 }
+
+function endTest() {
+  // Measure before stopping so WPM uses the exact elapsed time.
+  const elapsedMs = performance.now() - state.startTime;
+  resetTimer();
+
+  const total = state.correct + state.incorrect;
+  const wpm = (state.correct * 60000) / elapsedMs;
+  const accuracy = Math.round((state.correct / total) * 100);
+
+  HIDDEN_AT_END.forEach((id) => ($(id).style.display = "none"));
+  input.disabled = true;
+
+  $("score-screen").style.display = "block";
+  $("wpm").textContent = `${wpm.toFixed(2)} WPM     ${state.correct}/${total}`;
+  $("time").textContent = `${(elapsedMs / 1000).toFixed(2)} seconds`;
+  $("accuracy").textContent = `${accuracy}% accuracy`;
+}
+
+function submitWord(typed) {
+  const isCorrect = typed === state.shown[state.index];
+  if (isCorrect) state.correct++;
+  else state.incorrect++;
+
+  testText.children[state.index].className = isCorrect ? "right" : "wrong";
+  input.value = "";
+  input.className = "write-box";
+  state.index++;
+
+  if (state.index === state.wordCount) endTest();
+}
+
+function handleInput() {
+  if (state.shown.length === 0) return;
+  startTimer();
+
+  const typed = input.value;
+  if (typed.includes(" ")) {
+    submitWord(typed.slice(0, -1));
+    return;
+  }
+
+  // Live feedback: is what has been typed so far a prefix of the target word?
+  const isPrefix = state.shown[state.index].startsWith(typed);
+  testText.children[state.index].className =
+    `${isPrefix ? "right" : "wrong"} focused-word`;
+  input.className = `write-box ${isPrefix ? "right" : "wrong"}`;
+}
+
+// ---------- Word-count buttons ----------
+
+const countButtons = document.querySelectorAll("#buttons button");
+
+function selectWordCount(count) {
+  countButtons.forEach((button) => {
+    const isActive = Number(button.dataset.words) === count;
+    button.className = isActive ? "pressed" : `s${button.dataset.words}`;
+  });
+  newTest(count);
+  input.focus();
+}
+
+// ---------- Wiring ----------
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") setMenuOpen(!state.menuOpen);
+});
+$("menu-button").addEventListener("click", () => setMenuOpen(!state.menuOpen));
+input.addEventListener("input", handleInput);
+$("refresh").addEventListener("click", () => {
+  newTest();
+  input.focus();
+});
+$("score-screen").addEventListener("click", () => window.location.reload());
+countButtons.forEach((button) =>
+  button.addEventListener("click", () =>
+    selectWordCount(Number(button.dataset.words))
+  )
+);
+Object.keys(WORD_LIST_URLS).forEach((language) =>
+  $(language).addEventListener("click", async () => {
+    setMenuOpen(false);
+    await setLanguage(language);
+  })
+);
+
+selectWordCount(DEFAULT_WORD_COUNT);
+setLanguage(DEFAULT_LANGUAGE);
